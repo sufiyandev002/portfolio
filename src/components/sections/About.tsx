@@ -5,6 +5,15 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const facts = [
+    { label: "Name", value: "Sufiyan Mirza" },
+    { label: "Role", value: "Full Stack Developer" },
+    { label: "Company", value: "ITmate — Owner" },
+    { label: "Location", value: "Lahore, Pakistan" },
+    { label: "Experience", value: "3+ Years" },
+    { label: "Status", value: "Available for work" },
+];
+
 const skills = [
     { name: "Laravel / PHP", level: 95, color: "#FF2D20" },
     { name: "Python / FastAPI", level: 85, color: "#3776AB" },
@@ -14,43 +23,78 @@ const skills = [
     { name: "Docker / DevOps", level: 70, color: "#2496ED" },
 ];
 
-const facts = [
-    { label: "Role", value: "Full Stack Developer" },
-    { label: "Company", value: "ITmate — Owner" },
-    { label: "Location", value: "Lahore, Pakistan" },
-    { label: "Experience", value: "3+ Years" },
-    { label: "Flagship", value: "Recrify ATS" },
-    { label: "Status", value: "Available for work" },
-];
-
 export default function About() {
     const sectionRef = useRef<HTMLElement>(null);
-    const headingRef = useRef<HTMLDivElement>(null);
-    const factsRef = useRef<HTMLDivElement>(null);
+    const labelRef = useRef<HTMLDivElement>(null);
+    const heading1Ref = useRef<HTMLDivElement>(null);
+    const heading2Ref = useRef<HTMLDivElement>(null);
+    const cardRef = useRef<HTMLDivElement>(null);
     const skillsRef = useRef<HTMLDivElement>(null);
-    const imageRef = useRef<HTMLDivElement>(null);
+    const quoteRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Section entrance
+
+            // Section label
             gsap.fromTo(
-                headingRef.current,
-                { opacity: 0, y: 60 },
+                labelRef.current,
+                { opacity: 0, x: -30 },
                 {
                     opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: "power4.out",
+                    x: 0,
+                    duration: 0.8,
+                    ease: "power3.out",
                     scrollTrigger: {
-                        trigger: headingRef.current,
-                        start: "top 85%",
+                        trigger: labelRef.current,
+                        start: "top 88%",
                     },
                 }
             );
 
+            // Heading line 1
             gsap.fromTo(
-                imageRef.current,
-                { opacity: 0, x: -60, rotateY: 15 },
+                heading1Ref.current,
+                { opacity: 0, y: 80, skewY: 3 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    skewY: 0,
+                    duration: 1,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: heading1Ref.current,
+                        start: "top 88%",
+                    },
+                }
+            );
+
+            // Heading line 2
+            gsap.fromTo(
+                heading2Ref.current,
+                { opacity: 0, y: 80, skewY: 3 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    skewY: 0,
+                    duration: 1,
+                    ease: "power4.out",
+                    delay: 0.1,
+                    scrollTrigger: {
+                        trigger: heading2Ref.current,
+                        start: "top 88%",
+                    },
+                }
+            );
+
+            // Card entrance — 3D flip from left
+            gsap.fromTo(
+                cardRef.current,
+                {
+                    opacity: 0,
+                    x: -80,
+                    rotateY: 15,
+                    transformPerspective: 1000,
+                },
                 {
                     opacity: 1,
                     x: 0,
@@ -58,53 +102,69 @@ export default function About() {
                     duration: 1.2,
                     ease: "power4.out",
                     scrollTrigger: {
-                        trigger: imageRef.current,
-                        start: "top 80%",
+                        trigger: cardRef.current,
+                        start: "top 82%",
                     },
                 }
             );
 
-            // Facts stagger
+            // Fact items stagger
             gsap.fromTo(
                 ".fact-item",
                 { opacity: 0, x: -20 },
                 {
                     opacity: 1,
                     x: 0,
-                    duration: 0.6,
+                    duration: 0.5,
                     ease: "power3.out",
-                    stagger: 0.08,
+                    stagger: 0.07,
                     scrollTrigger: {
-                        trigger: factsRef.current,
-                        start: "top 80%",
+                        trigger: cardRef.current,
+                        start: "top 78%",
                     },
                 }
             );
 
-            // Skill bars
+            // Skills entrance
+            gsap.fromTo(
+                skillsRef.current,
+                { opacity: 0, x: 80 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: skillsRef.current,
+                        start: "top 82%",
+                    },
+                }
+            );
+
+            // Skill items stagger
             gsap.fromTo(
                 ".skill-item",
                 { opacity: 0, y: 20 },
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 0.6,
+                    duration: 0.5,
                     ease: "power3.out",
-                    stagger: 0.1,
+                    stagger: 0.08,
                     scrollTrigger: {
                         trigger: skillsRef.current,
-                        start: "top 80%",
+                        start: "top 78%",
                     },
                 }
             );
 
-            // Skill bar fill animation
+            // Skill bar fill
             gsap.fromTo(
                 ".skill-bar-fill",
                 { width: "0%" },
                 {
                     width: (i, el) => el.getAttribute("data-width") + "%",
-                    duration: 1.2,
+                    duration: 1.4,
                     ease: "power3.out",
                     stagger: 0.1,
                     scrollTrigger: {
@@ -114,22 +174,22 @@ export default function About() {
                 }
             );
 
-            // 3D scroll transition — section enters from below with depth
+            // Quote
             gsap.fromTo(
-                sectionRef.current,
-                { opacity: 0, y: 100, scale: 0.95 },
+                quoteRef.current,
+                { opacity: 0, y: 30 },
                 {
                     opacity: 1,
                     y: 0,
-                    scale: 1,
                     duration: 1,
                     ease: "power3.out",
                     scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top 90%",
+                        trigger: quoteRef.current,
+                        start: "top 88%",
                     },
                 }
             );
+
         }, sectionRef);
 
         return () => ctx.revert();
@@ -142,17 +202,7 @@ export default function About() {
             className="relative py-32 overflow-hidden"
             style={{ background: "#080808" }}
         >
-            {/* Background grid */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-[0.03]"
-                style={{
-                    backgroundImage: `linear-gradient(#00ff87 1px, transparent 1px), 
-                            linear-gradient(90deg, #00ff87 1px, transparent 1px)`,
-                    backgroundSize: "60px 60px",
-                }}
-            />
-
-            {/* Accent line top */}
+            {/* Top accent line */}
             <div
                 className="absolute top-0 left-0 right-0 h-px"
                 style={{
@@ -161,27 +211,46 @@ export default function About() {
                 }}
             />
 
+            {/* Background grid */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(0,255,135,0.03) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(0,255,135,0.03) 1px, transparent 1px)`,
+                    backgroundSize: "80px 80px",
+                }}
+            />
+
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16">
+
                 {/* Section label */}
-                <div ref={headingRef} className="mb-20 opacity-0">
+                <div ref={labelRef} className="mb-4 opacity-0">
                     <span
                         className="font-mono text-xs tracking-widest uppercase"
                         style={{ color: "#00ff87" }}
                     >
                         01 — About
                     </span>
-                    <h2
-                        className="font-display font-bold mt-3"
-                        style={{
-                            fontSize: "clamp(2.5rem, 6vw, 5rem)",
-                            color: "#ededed",
-                            lineHeight: 1,
-                        }}
-                    >
-                        The Dev Behind
-                        <br />
-                        <span
+                </div>
+
+                {/* Heading */}
+                <div className="mb-20 overflow-hidden">
+                    <div ref={heading1Ref} className="opacity-0">
+                        <h2
+                            className="font-display font-bold leading-[0.95]"
                             style={{
+                                fontSize: "clamp(2.5rem, 7vw, 6rem)",
+                                color: "#ededed",
+                            }}
+                        >
+                            The Dev Behind
+                        </h2>
+                    </div>
+                    <div ref={heading2Ref} className="opacity-0">
+                        <h2
+                            className="font-display font-bold leading-[0.95]"
+                            style={{
+                                fontSize: "clamp(2.5rem, 7vw, 6rem)",
                                 background: "linear-gradient(135deg, #00ff87, #60efff)",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
@@ -189,70 +258,58 @@ export default function About() {
                             }}
                         >
                             The Code
-                        </span>
-                    </h2>
+                        </h2>
+                    </div>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-20 items-start">
-                    {/* Left — Visual card */}
-                    <div ref={imageRef} className="opacity-0">
+                {/* Grid */}
+                <div className="grid lg:grid-cols-2 gap-16 items-start">
+
+                    {/* Left — Code card */}
+                    <div ref={cardRef} className="opacity-0">
                         <div
-                            className="relative"
                             style={{
+                                background: "#0a0a0a",
                                 border: "1px solid #1a1a1a",
                                 padding: "40px",
-                                background: "#0f0f0f",
+                                position: "relative",
                             }}
                         >
                             {/* Corner accents */}
-                            <div
-                                className="absolute top-0 left-0 w-6 h-6"
-                                style={{
-                                    borderTop: "2px solid #00ff87",
-                                    borderLeft: "2px solid #00ff87",
-                                }}
-                            />
-                            <div
-                                className="absolute top-0 right-0 w-6 h-6"
-                                style={{
-                                    borderTop: "2px solid #00ff87",
-                                    borderRight: "2px solid #00ff87",
-                                }}
-                            />
-                            <div
-                                className="absolute bottom-0 left-0 w-6 h-6"
-                                style={{
-                                    borderBottom: "2px solid #00ff87",
-                                    borderLeft: "2px solid #00ff87",
-                                }}
-                            />
-                            <div
-                                className="absolute bottom-0 right-0 w-6 h-6"
-                                style={{
-                                    borderBottom: "2px solid #00ff87",
-                                    borderRight: "2px solid #00ff87",
-                                }}
-                            />
+                            {["top-0 left-0 border-t-2 border-l-2",
+                                "top-0 right-0 border-t-2 border-r-2",
+                                "bottom-0 left-0 border-b-2 border-l-2",
+                                "bottom-0 right-0 border-b-2 border-r-2",
+                            ].map((cls, i) => (
+                                <div
+                                    key={i}
+                                    className={`absolute w-5 h-5 ${cls}`}
+                                    style={{ borderColor: "#00ff87" }}
+                                />
+                            ))}
 
-                            {/* Code block style intro */}
-                            <div className="font-mono text-sm mb-8" style={{ color: "#6b7280" }}>
+                            {/* Code header */}
+                            <div className="font-mono text-sm mb-6">
                                 <span style={{ color: "#60efff" }}>const</span>{" "}
                                 <span style={{ color: "#00ff87" }}>developer</span>{" "}
                                 <span style={{ color: "#ededed" }}>=</span>{" "}
-                                <span style={{ color: "#60efff" }}>{`{`}</span>
+                                <span style={{ color: "#ededed" }}>{"{"}</span>
                             </div>
 
-                            <div ref={factsRef} className="space-y-4 mb-8">
+                            {/* Facts */}
+                            <div className="space-y-3 mb-6">
                                 {facts.map((fact, i) => (
                                     <div
                                         key={i}
                                         className="fact-item opacity-0 flex items-center justify-between font-mono text-sm"
                                         style={{
-                                            paddingBottom: "12px",
+                                            paddingBottom: "10px",
                                             borderBottom: "1px solid #1a1a1a",
                                         }}
                                     >
-                                        <span style={{ color: "#6b7280" }}>{fact.label}:</span>
+                                        <span style={{ color: "#6b7280" }}>
+                                            &nbsp;&nbsp;{fact.label}:
+                                        </span>
                                         <span style={{ color: "#ededed" }}>
                                             &quot;{fact.value}&quot;
                                         </span>
@@ -260,16 +317,17 @@ export default function About() {
                                 ))}
                             </div>
 
-                            <div className="font-mono text-sm" style={{ color: "#60efff" }}>
-                                {`}`}
+                            <div className="font-mono text-sm" style={{ color: "#ededed" }}>
+                                {"};"}
                             </div>
                         </div>
                     </div>
 
                     {/* Right — Skills */}
-                    <div ref={skillsRef}>
+                    <div ref={skillsRef} className="opacity-0">
+
                         <p
-                            className="font-body leading-relaxed mb-12"
+                            className="font-body leading-relaxed mb-10"
                             style={{
                                 color: "#6b7280",
                                 fontSize: "1.05rem",
@@ -291,14 +349,13 @@ export default function About() {
                                 <div key={i} className="skill-item opacity-0">
                                     <div
                                         className="flex justify-between mb-2 font-mono text-xs"
-                                        style={{ color: "#6b7280" }}
                                     >
                                         <span style={{ color: "#ededed" }}>{skill.name}</span>
-                                        <span>{skill.level}%</span>
+                                        <span style={{ color: "#6b7280" }}>{skill.level}%</span>
                                     </div>
                                     <div
                                         style={{
-                                            height: "2px",
+                                            height: "1px",
                                             background: "#1a1a1a",
                                             overflow: "hidden",
                                         }}
@@ -309,7 +366,7 @@ export default function About() {
                                             style={{
                                                 width: "0%",
                                                 background: `linear-gradient(90deg, ${skill.color}, #60efff)`,
-                                                boxShadow: `0 0 8px ${skill.color}40`,
+                                                boxShadow: `0 0 8px ${skill.color}60`,
                                             }}
                                         />
                                     </div>
@@ -317,27 +374,40 @@ export default function About() {
                             ))}
                         </div>
 
-                        {/* Philosophy quote */}
+                        {/* Quote */}
                         <div
-                            className="mt-16 p-6"
+                            ref={quoteRef}
+                            className="mt-12 opacity-0"
                             style={{
+                                padding: "24px 28px",
                                 background: "rgba(0,255,135,0.02)",
-                                border: "1px solid rgba(0,255,135,0.1)",
+                                borderLeft: "2px solid #00ff87",
                             }}
                         >
                             <p
                                 className="font-display text-lg leading-relaxed"
                                 style={{ color: "#ededed" }}
                             >
-                                &ldquo;Clean code is not written by following a set of rules.
-                                Clean code is written by someone who{" "}
-                                <span style={{ color: "#00ff87" }}>cares about the craft.</span>
+                                &ldquo;Clean code is written by someone who{" "}
+                                <span style={{ color: "#00ff87" }}>
+                                    cares about the craft.
+                                </span>
                                 &rdquo;
                             </p>
                         </div>
+
                     </div>
                 </div>
             </div>
+
+            {/* Bottom accent line */}
+            <div
+                className="absolute bottom-0 left-0 right-0 h-px"
+                style={{
+                    background:
+                        "linear-gradient(90deg, transparent, #60efff, transparent)",
+                }}
+            />
         </section>
     );
 }
