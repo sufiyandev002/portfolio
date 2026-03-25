@@ -3,6 +3,7 @@ import "./globals.css";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import BottomBlur from "@/components/BottomBlur";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function RootLayout({
         <SmoothScroll>
           <CustomCursor />
           {children}
+          <BottomBlur />
         </SmoothScroll>
       </body>
     </html>
