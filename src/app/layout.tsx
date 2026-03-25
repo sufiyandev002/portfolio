@@ -1,7 +1,26 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["300", "400", "500", "600"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500"],
+});
 
 export const metadata: Metadata = {
   title: "Sufiyan Mirza — Full Stack Developer",
@@ -30,7 +49,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      >
         <SmoothScroll>
           <CustomCursor />
           {children}
