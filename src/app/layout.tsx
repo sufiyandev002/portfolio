@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Oxanium, Inter, JetBrains_Mono } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import BottomBlur from "@/components/BottomBlur";
+import Footer from "@/components/Footer";
 
-const spaceGrotesk = Space_Grotesk({
+const oxanium = Oxanium({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-oxanium",
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const inter = Inter({
@@ -52,11 +53,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+        className={`${oxanium.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       >
         <SmoothScroll>
           <CustomCursor />
           {children}
+          <Footer />
           <BottomBlur />
         </SmoothScroll>
       </body>
