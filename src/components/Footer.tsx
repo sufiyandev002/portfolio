@@ -157,6 +157,7 @@ export default function Footer() {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
+            fontFamily: "var(--font-montserrat)",
           }}
         >
           sufiyan

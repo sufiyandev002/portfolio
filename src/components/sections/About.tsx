@@ -277,7 +277,7 @@ export default function About() {
         <section
             ref={sectionRef}
             id="about"
-            className="relative bg-[#080808] overflow-hidden pt-32 pb-32"
+            className="relative bg-[#080808] overflow-hidden pt-32"
         >
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 pb-3">
 

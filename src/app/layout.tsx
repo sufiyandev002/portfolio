@@ -41,7 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${montserrat.variable}`}
+        className={`${montserrat.variable} ${montserrat.className}`}
       >
         <SmoothScroll>
           <CustomCursor />
