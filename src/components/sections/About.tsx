@@ -1,195 +1,273 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Spline from "@splinetool/react-spline";
+import {
+    Building2,
+    Bot,
+    Database,
+    Zap,
+    MapPin,
+    MessageSquare,
+    GraduationCap,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const facts = [
-    { label: "Name", value: "Sufiyan Mirza" },
-    { label: "Role", value: "Full Stack Developer" },
-    { label: "Company", value: "ITmate — Owner" },
-    { label: "Location", value: "Lahore, Pakistan" },
-    { label: "Experience", value: "3+ Years" },
-    { label: "Status", value: "Available for work" },
+const timelineItems = [
+    {
+        text: "I'm a Full Stack Developer from Lahore, Pakistan who builds things at the intersection of clean backend architecture, intelligent AI systems, and pixel-perfect interfaces.",
+        isParagraph: true,
+    },
+    {
+        text: "By day I architect Laravel backends and Python microservices. By night I obsess over UI micro-interactions and matching algorithm precision.",
+        isParagraph: true,
+    },
+    { icon: Building2, text: "Owner at ITmate" },
+    { icon: Bot, text: "Building Recrify — an AI-powered ATS" },
+    { icon: Database, text: "Exploring Vector DBs, NLP pipelines & XGBoost tuning" },
+    { icon: Zap, text: "Obsessed with performance, clean code & smooth UX" },
+    { icon: MapPin, text: "Based in Lahore, Pakistan" },
+    { icon: MessageSquare, text: "Ask me about Laravel · FastAPI · AI Integration · WordPress" },
+    { icon: GraduationCap, text: "Bachelors in Computer Science with Silver Medal." },
 ];
 
-const skills = [
-    { name: "Laravel / PHP", level: 95, color: "#FF2D20" },
-    { name: "Python / FastAPI", level: 85, color: "#3776AB" },
-    { name: "AI / ML Systems", level: 80, color: "#00ff87" },
-    { name: "Next.js / React", level: 78, color: "#60efff" },
-    { name: "MySQL / Qdrant", level: 85, color: "#005C84" },
-    { name: "Docker / DevOps", level: 70, color: "#2496ED" },
-];
+function GlassCard({ icon, text }: { icon: React.ElementType; text: string }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = cardRef.current;
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / (rect.width / 2);
+        const dy = (e.clientY - cy) / (rect.height / 2);
+        gsap.to(card, {
+            rotateY: dx * 12,
+            rotateX: -dy * 12,
+            scale: 1.03,
+            duration: 0.3,
+            ease: "power2.out",
+            transformPerspective: 800,
+        });
+        // Shine position
+        const shine = card.querySelector(".card-shine") as HTMLElement;
+        if (shine) {
+            shine.style.background = `radial-gradient(circle at ${((e.clientX - rect.left) / rect.width) * 100}% ${((e.clientY - rect.top) / rect.height) * 100}%, rgba(255,255,255,0.08) 0%, transparent 70%)`;
+        }
+    };
+
+    const handleMouseLeave = () => {
+        const card = cardRef.current;
+        if (!card) return;
+        gsap.to(card, {
+            rotateY: 0,
+            rotateX: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "power3.out",
+            transformPerspective: 800,
+        });
+        const shine = card.querySelector(".card-shine") as HTMLElement;
+        if (shine) shine.style.background = "transparent";
+    };
+
+    const Icon = icon;
+
+    return (
+        <div
+            ref={cardRef}
+            className="relative flex items-center gap-4 p-5 rounded-2xl cursor-default"
+            style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
+                transformStyle: "preserve-3d",
+                willChange: "transform",
+            }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+        >
+            {/* Shine overlay */}
+            <div
+                className="card-shine absolute inset-0 rounded-2xl pointer-events-none"
+                style={{ transition: "background 0.1s ease" }}
+            />
+
+            {/* Top edge highlight */}
+            <div
+                className="absolute top-0 left-4 right-4 h-px rounded-full pointer-events-none"
+                style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent)" }}
+            />
+
+            <div
+                className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+                style={{
+                    background: "rgba(0,255,135,0.08)",
+                    border: "1px solid rgba(0,255,135,0.2)",
+                    boxShadow: "0 0 20px rgba(0,255,135,0.1)",
+                }}
+            >
+                <Icon size={18} color="#00ff87" />
+            </div>
+
+            <span
+                className="font-mono text-sm leading-snug"
+                style={{ color: "rgba(255,255,255,0.8)" }}
+            >
+                {text}
+            </span>
+        </div>
+    );
+}
 
 export default function About() {
     const sectionRef = useRef<HTMLElement>(null);
-    const labelRef = useRef<HTMLDivElement>(null);
-    const heading1Ref = useRef<HTMLDivElement>(null);
-    const heading2Ref = useRef<HTMLDivElement>(null);
-    const cardRef = useRef<HTMLDivElement>(null);
-    const skillsRef = useRef<HTMLDivElement>(null);
-    const quoteRef = useRef<HTMLDivElement>(null);
+    const splineContainerRef = useRef<HTMLDivElement>(null);
+    const splineLabelRef = useRef<HTMLDivElement>(null);
+    const splineBottomRef = useRef<HTMLDivElement>(null);
+    const timelineRef = useRef<HTMLDivElement>(null);
+    const lineRef = useRef<HTMLDivElement>(null);
+    const dotRef = useRef<HTMLDivElement>(null);
+    const headingRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
 
-            // Section label
             gsap.fromTo(
-                labelRef.current,
+                headingRef.current,
+                { opacity: 0, y: 60 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: headingRef.current,
+                        start: "top 85%",
+                    },
+                }
+            );
+
+            gsap.fromTo(
+                splineContainerRef.current,
+                { opacity: 0, scale: 0.97 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: splineContainerRef.current,
+                        start: "top 85%",
+                    },
+                }
+            );
+
+            gsap.fromTo(
+                splineLabelRef.current,
                 { opacity: 0, x: -30 },
                 {
                     opacity: 1,
                     x: 0,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: labelRef.current,
-                        start: "top 88%",
-                    },
-                }
-            );
-
-            // Heading line 1
-            gsap.fromTo(
-                heading1Ref.current,
-                { opacity: 0, y: 80, skewY: 3 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    skewY: 0,
                     duration: 1,
-                    ease: "power4.out",
-                    scrollTrigger: {
-                        trigger: heading1Ref.current,
-                        start: "top 88%",
-                    },
-                }
-            );
-
-            // Heading line 2
-            gsap.fromTo(
-                heading2Ref.current,
-                { opacity: 0, y: 80, skewY: 3 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    skewY: 0,
-                    duration: 1,
-                    ease: "power4.out",
-                    delay: 0.1,
-                    scrollTrigger: {
-                        trigger: heading2Ref.current,
-                        start: "top 88%",
-                    },
-                }
-            );
-
-            // Card entrance — 3D flip from left
-            gsap.fromTo(
-                cardRef.current,
-                {
-                    opacity: 0,
-                    x: -80,
-                    rotateY: 15,
-                    transformPerspective: 1000,
-                },
-                {
-                    opacity: 1,
-                    x: 0,
-                    rotateY: 0,
-                    duration: 1.2,
-                    ease: "power4.out",
-                    scrollTrigger: {
-                        trigger: cardRef.current,
-                        start: "top 82%",
-                    },
-                }
-            );
-
-            // Fact items stagger
-            gsap.fromTo(
-                ".fact-item",
-                { opacity: 0, x: -20 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 0.5,
                     ease: "power3.out",
-                    stagger: 0.07,
                     scrollTrigger: {
-                        trigger: cardRef.current,
-                        start: "top 78%",
-                    },
-                }
-            );
-
-            // Skills entrance
-            gsap.fromTo(
-                skillsRef.current,
-                { opacity: 0, x: 80 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1,
-                    ease: "power4.out",
-                    scrollTrigger: {
-                        trigger: skillsRef.current,
-                        start: "top 82%",
-                    },
-                }
-            );
-
-            // Skill items stagger
-            gsap.fromTo(
-                ".skill-item",
-                { opacity: 0, y: 20 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5,
-                    ease: "power3.out",
-                    stagger: 0.08,
-                    scrollTrigger: {
-                        trigger: skillsRef.current,
-                        start: "top 78%",
-                    },
-                }
-            );
-
-            // Skill bar fill
-            gsap.fromTo(
-                ".skill-bar-fill",
-                { width: "0%" },
-                {
-                    width: (i, el) => el.getAttribute("data-width") + "%",
-                    duration: 1.4,
-                    ease: "power3.out",
-                    stagger: 0.1,
-                    scrollTrigger: {
-                        trigger: skillsRef.current,
+                        trigger: splineContainerRef.current,
                         start: "top 75%",
                     },
                 }
             );
 
-            // Quote
             gsap.fromTo(
-                quoteRef.current,
-                { opacity: 0, y: 30 },
+                splineBottomRef.current,
+                { opacity: 0, x: 30 },
                 {
                     opacity: 1,
-                    y: 0,
+                    x: 0,
                     duration: 1,
                     ease: "power3.out",
                     scrollTrigger: {
-                        trigger: quoteRef.current,
-                        start: "top 88%",
+                        trigger: splineContainerRef.current,
+                        start: "top 75%",
                     },
                 }
             );
 
+            if (timelineRef.current && lineRef.current && dotRef.current) {
+                gsap.fromTo(
+                    lineRef.current,
+                    { scaleY: 0, transformOrigin: "top center" },
+                    {
+                        scaleY: 1,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: timelineRef.current,
+                            start: "top 60%",
+                            end: "bottom 80%",
+                            scrub: 0.8,
+                        },
+                    }
+                );
+
+                gsap.to(dotRef.current, {
+                    top: "100%",
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: timelineRef.current,
+                        start: "top 60%",
+                        end: "bottom 80%",
+                        scrub: 0.5,
+                    },
+                });
+
+                // Paragraph items
+                gsap.utils.toArray<HTMLElement>(".timeline-para").forEach((item) => {
+                    gsap.fromTo(
+                        item,
+                        { opacity: 0, y: 40 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.9,
+                            ease: "power3.out",
+                            scrollTrigger: {
+                                trigger: item,
+                                start: "top 82%",
+                            },
+                        }
+                    );
+                });
+
+                // Card items — 3D flip reveal
+                gsap.utils.toArray<HTMLElement>(".timeline-card").forEach((item, i) => {
+                    gsap.fromTo(
+                        item,
+                        {
+                            opacity: 0,
+                            y: 60,
+                            rotateX: 25,
+                            transformPerspective: 800,
+                        },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            rotateX: 0,
+                            duration: 0.85,
+                            ease: "power3.out",
+                            scrollTrigger: {
+                                trigger: item,
+                                start: "top 85%",
+                            },
+                        }
+                    );
+                });
+            }
         }, sectionRef);
 
         return () => ctx.revert();
@@ -199,215 +277,141 @@ export default function About() {
         <section
             ref={sectionRef}
             id="about"
-            className="relative py-32 overflow-hidden"
-            style={{ background: "#080808" }}
+            className="relative bg-[#080808] overflow-hidden pt-32 pb-32"
         >
-            {/* Top accent line */}
-            <div
-                className="absolute top-0 left-0 right-0 h-px"
-                style={{
-                    background:
-                        "linear-gradient(90deg, transparent, #00ff87, transparent)",
-                }}
-            />
+            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 pb-3">
 
-            {/* Background grid */}
-            <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    backgroundImage: `linear-gradient(rgba(0,255,135,0.03) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(0,255,135,0.03) 1px, transparent 1px)`,
-                    backgroundSize: "80px 80px",
-                }}
-            />
-
-            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16">
-
-                {/* Section label */}
-                <div ref={labelRef} className="mb-4 opacity-0">
-                    <span
-                        className="font-mono text-xs tracking-widest uppercase"
-                        style={{ color: "#00ff87" }}
+                {/* Big white heading */}
+                <div ref={headingRef} className="mb-16 opacity-0">
+                    <h2
+                        className="font-display font-medium text-center leading-none uppercase tracking-tighter"
+                        style={{ fontSize: "clamp(4.5rem, 12vw, 10rem)", color: "#ffffff" }}
                     >
-                        01 — About
-                    </span>
+                        About Me
+                    </h2>
                 </div>
 
-                {/* Heading */}
-                <div className="mb-20 overflow-hidden">
-                    <div ref={heading1Ref} className="opacity-0">
-                        <h2
-                            className="font-display font-bold leading-[0.95]"
-                            style={{
-                                fontSize: "clamp(2.5rem, 7vw, 6rem)",
-                                color: "#ededed",
-                            }}
-                        >
-                            The Dev Behind
-                        </h2>
-                    </div>
-                    <div ref={heading2Ref} className="opacity-0">
-                        <h2
-                            className="font-display font-bold leading-[0.95]"
-                            style={{
-                                fontSize: "clamp(2.5rem, 7vw, 6rem)",
-                                background: "linear-gradient(135deg, #00ff87, #60efff)",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                                backgroundClip: "text",
-                            }}
-                        >
-                            The Code
-                        </h2>
-                    </div>
-                </div>
+                {/* Timeline Section */}
+                <div ref={timelineRef} className="relative pb-16">
 
-                {/* Grid */}
-                <div className="grid lg:grid-cols-2 gap-16 items-start">
-
-                    {/* Left — Code card */}
-                    <div ref={cardRef} className="opacity-0">
+                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/[0.06] -translate-x-1/2">
                         <div
+                            ref={lineRef}
+                            className="absolute inset-0 w-full"
                             style={{
-                                background: "#0a0a0a",
-                                border: "1px solid #1a1a1a",
-                                padding: "40px",
-                                position: "relative",
+                                background: "linear-gradient(to bottom, #00ff87, #60efff)",
+                                transform: "scaleY(0)",
+                                transformOrigin: "top center",
                             }}
-                        >
-                            {/* Corner accents */}
-                            {["top-0 left-0 border-t-2 border-l-2",
-                                "top-0 right-0 border-t-2 border-r-2",
-                                "bottom-0 left-0 border-b-2 border-l-2",
-                                "bottom-0 right-0 border-b-2 border-r-2",
-                            ].map((cls, i) => (
+                        />
+                        <div
+                            ref={dotRef}
+                            className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full"
+                            style={{
+                                top: "0%",
+                                background: "#00ff87",
+                                boxShadow: "0 0 12px #00ff87, 0 0 30px rgba(0,255,135,0.5)",
+                            }}
+                        />
+                    </div>
+
+                    <div className="relative z-10 space-y-20 md:space-y-28">
+                        {timelineItems.map((item, i) => {
+                            const isEven = i % 2 === 0;
+                            const Icon = !item.isParagraph ? item.icon as React.ElementType : null;
+
+                            return (
                                 <div
                                     key={i}
-                                    className={`absolute w-5 h-5 ${cls}`}
-                                    style={{ borderColor: "#00ff87" }}
-                                />
-                            ))}
-
-                            {/* Code header */}
-                            <div className="font-mono text-sm mb-6">
-                                <span style={{ color: "#60efff" }}>const</span>{" "}
-                                <span style={{ color: "#00ff87" }}>developer</span>{" "}
-                                <span style={{ color: "#ededed" }}>=</span>{" "}
-                                <span style={{ color: "#ededed" }}>{"{"}</span>
-                            </div>
-
-                            {/* Facts */}
-                            <div className="space-y-3 mb-6">
-                                {facts.map((fact, i) => (
+                                    className={`flex w-full ${isEven ? "md:justify-start" : "md:justify-end"}`}
+                                >
                                     <div
-                                        key={i}
-                                        className="fact-item opacity-0 flex items-center justify-between font-mono text-sm"
-                                        style={{
-                                            paddingBottom: "10px",
-                                            borderBottom: "1px solid #1a1a1a",
-                                        }}
+                                        className={`w-full md:w-[45%] pl-16 md:pl-0 ${isEven ? "md:pr-12" : "md:pl-12"}`}
                                     >
-                                        <span style={{ color: "#6b7280" }}>
-                                            &nbsp;&nbsp;{fact.label}:
-                                        </span>
-                                        <span style={{ color: "#ededed" }}>
-                                            &quot;{fact.value}&quot;
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className="font-mono text-sm" style={{ color: "#ededed" }}>
-                                {"};"}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right — Skills */}
-                    <div ref={skillsRef} className="opacity-0">
-
-                        <p
-                            className="font-body leading-relaxed mb-10"
-                            style={{
-                                color: "#6b7280",
-                                fontSize: "1.05rem",
-                                borderLeft: "2px solid rgba(0,255,135,0.3)",
-                                paddingLeft: "1.25rem",
-                            }}
-                        >
-                            I specialize in building{" "}
-                            <span style={{ color: "#ededed" }}>
-                                production-grade systems
-                            </span>{" "}
-                            that are fast, maintainable, and intelligent. From event-driven
-                            Laravel backends to Python AI microservices — I care about the
-                            craft at every layer of the stack.
-                        </p>
-
-                        <div className="space-y-6">
-                            {skills.map((skill, i) => (
-                                <div key={i} className="skill-item opacity-0">
-                                    <div
-                                        className="flex justify-between mb-2 font-mono text-xs"
-                                    >
-                                        <span style={{ color: "#ededed" }}>{skill.name}</span>
-                                        <span style={{ color: "#6b7280" }}>{skill.level}%</span>
-                                    </div>
-                                    <div
-                                        style={{
-                                            height: "1px",
-                                            background: "#1a1a1a",
-                                            overflow: "hidden",
-                                        }}
-                                    >
-                                        <div
-                                            className="skill-bar-fill h-full"
-                                            data-width={skill.level}
-                                            style={{
-                                                width: "0%",
-                                                background: `linear-gradient(90deg, ${skill.color}, #60efff)`,
-                                                boxShadow: `0 0 8px ${skill.color}60`,
-                                            }}
-                                        />
+                                        {item.isParagraph ? (
+                                            <div className="timeline-para" style={{ opacity: 0 }}>
+                                                <p
+                                                    className="font-body text-lg md:text-xl leading-relaxed"
+                                                    style={{ color: "rgba(255,255,255,1)" }}
+                                                >
+                                                    {item.text}
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div className="timeline-card" style={{ opacity: 0 }}>
+                                                <GlassCard icon={Icon!} text={item.text} />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-
-                        {/* Quote */}
-                        <div
-                            ref={quoteRef}
-                            className="mt-12 opacity-0"
-                            style={{
-                                padding: "24px 28px",
-                                background: "rgba(0,255,135,0.02)",
-                                borderLeft: "2px solid #00ff87",
-                            }}
-                        >
-                            <p
-                                className="font-display text-lg leading-relaxed"
-                                style={{ color: "#ededed" }}
-                            >
-                                &ldquo;Clean code is written by someone who{" "}
-                                <span style={{ color: "#00ff87" }}>
-                                    cares about the craft.
-                                </span>
-                                &rdquo;
-                            </p>
-                        </div>
-
+                            );
+                        })}
                     </div>
                 </div>
-            </div>
 
-            {/* Bottom accent line */}
-            <div
-                className="absolute bottom-0 left-0 right-0 h-px"
-                style={{
-                    background:
-                        "linear-gradient(90deg, transparent, #60efff, transparent)",
-                }}
-            />
+                {/* Full-width Spline with heading overlay */}
+                <div
+                    ref={splineContainerRef}
+                    className="relative w-full opacity-0 rounded-2xl overflow-hidden mb-32"
+                    style={{ height: "100vh", border: "1px solid rgba(255,255,255,0.06)" }}
+                >
+                    {/* Top-left label */}
+                    <div
+                        ref={splineLabelRef}
+                        className="absolute top-8 left-8 z-20 opacity-0 pointer-events-none"
+                    >
+                        <p
+                            className="font-mono text-xs tracking-widest uppercase mb-2"
+                            style={{ color: "#00ff87" }}
+                        >
+                            — The Dev Behind
+                        </p>
+                        <h3
+                            className="font-display font-medium leading-none tracking-tighter"
+                            style={{
+                                fontSize: "clamp(2rem, 5vw, 4rem)",
+                                color: "#ffffff",
+                                textShadow: "0 0 40px rgba(0,0,0,0.8)",
+                            }}
+                        >
+                            The Code.
+                        </h3>
+                    </div>
+
+                    {/* Bottom-right label */}
+                    <div
+                        ref={splineBottomRef}
+                        className="absolute bottom-12 right-8 z-20 opacity-0 pointer-events-none text-right"
+                    >
+                        <h3
+                            className="font-display font-medium leading-none tracking-tighter mb-2"
+                            style={{
+                                fontSize: "clamp(1.2rem, 3vw, 2.2rem)",
+                                color: "#ffffff",
+                                textShadow: "0 0 40px rgba(0,0,0,0.8)",
+                            }}
+                        >
+                            Full Stack · AI · Design
+                        </h3>
+                        <p
+                            className="font-mono text-xs tracking-widest uppercase"
+                            style={{ color: "#60efff" }}
+                        >
+                            Laravel · FastAPI · Next.js —
+                        </p>
+                    </div>
+
+                    <div
+                        className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none"
+                        style={{
+                            height: "30%",
+                            background: "linear-gradient(to top, #080808 0%, transparent 100%)",
+                        }}
+                    />
+
+                    <Spline scene="https://prod.spline.design/vNIcF0wIQsRTS-V2/scene.splinecode" />
+                </div>
+            </div>
         </section>
     );
 }
