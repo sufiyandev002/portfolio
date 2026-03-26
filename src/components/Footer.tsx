@@ -89,14 +89,14 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ y: -4, scale: 1.05 }}
-                className="w-12 h-12 rounded-full border border-white/5 bg-white/[0.02] flex items-center justify-center text-muted hover:text-accent hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
+                className="w-12 h-12 rounded-full border border-white/5 bg-white/[0.02] flex items-center justify-center hover:text-accent hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
               >
                 <social.icon className="w-5 h-5" />
               </motion.a>
             ))}
           </div>
-          <p className="font-mono text-[11px] text-muted max-w-[240px] leading-relaxed">
-            Shipping production-grade AI & web systems from Lahore.
+          <p className="font-mono text-[11px] max-w-[240px] leading-relaxed">
+            Shipping production-grade AI & web systems from Pakistan.
           </p>
         </div>
 
@@ -131,14 +131,14 @@ export default function Footer() {
       </div>
 
       {/* Footer Bottom Info Line */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-white/5 font-mono text-[10px] tracking-widest uppercase text-muted mb-16 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-white/5 font-mono text-[10px] tracking-widest uppercase mb-16 relative z-10">
         <p>© 2026 Sufiyan Mirza</p>
         <div className="flex gap-10">
           <span className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_#00ff87]" />
-            Lahore, PK
+            Faisalabad, PK
           </span>
-          <span>19:06 PM PST</span>
+          <span>19:12 PM PKT</span>
         </div>
         <p>Built with Passion & Next.js</p>
       </div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import GlitchText from "@/components/hero/GlitchText";
 import MouseOrbs from "@/components/hero/MouseOrbs";
 
@@ -15,13 +16,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
     const sectionRef = useRef<HTMLElement>(null);
-    const badgeRef = useRef<HTMLDivElement>(null);
-    const line1Ref = useRef<HTMLDivElement>(null);
-    const line2Ref = useRef<HTMLDivElement>(null);
-    const line3Ref = useRef<HTMLDivElement>(null);
-    const subRef = useRef<HTMLDivElement>(null);
-    const ctaRef = useRef<HTMLDivElement>(null);
-    const statsRef = useRef<HTMLDivElement>(null);
+    const name1Ref = useRef<HTMLDivElement>(null);
+    const name2Ref = useRef<HTMLDivElement>(null);
+    const imageRef = useRef<HTMLDivElement>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -30,45 +27,21 @@ export default function Hero() {
             const tl = gsap.timeline({ delay: 0.4 });
 
             tl.fromTo(
-                badgeRef.current,
-                { opacity: 0, x: -30 },
-                { opacity: 1, x: 0, duration: 0.7, ease: "power3.out" }
+                name1Ref.current,
+                { opacity: 0, y: 100, scale: 0.9 },
+                { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: "power4.out" }
             )
                 .fromTo(
-                    line1Ref.current,
-                    { opacity: 0, y: 60 },
-                    { opacity: 1, y: 0, duration: 0.9, ease: "power4.out" },
-                    "-=0.3"
+                    imageRef.current,
+                    { opacity: 0, scale: 0.8, y: 50 },
+                    { opacity: 1, scale: 1, y: 0, duration: 1.5, ease: "power3.out" },
+                    "-=0.8"
                 )
                 .fromTo(
-                    line2Ref.current,
-                    { opacity: 0, y: 60 },
-                    { opacity: 1, y: 0, duration: 0.9, ease: "power4.out" },
-                    "-=0.6"
-                )
-                .fromTo(
-                    line3Ref.current,
-                    { opacity: 0, y: 30 },
-                    { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
-                    "-=0.5"
-                )
-                .fromTo(
-                    subRef.current,
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
-                    "-=0.4"
-                )
-                .fromTo(
-                    ctaRef.current,
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
-                    "-=0.4"
-                )
-                .fromTo(
-                    statsRef.current,
-                    { opacity: 0, x: 30 },
-                    { opacity: 1, x: 0, duration: 0.7, ease: "power3.out" },
-                    "-=0.5"
+                    name2Ref.current,
+                    { opacity: 0, x: -100, filter: "blur(10px)" },
+                    { opacity: 1, x: 0, filter: "blur(0px)", duration: 1.2, ease: "power4.out" },
+                    "-=1"
                 )
                 .fromTo(
                     scrollRef.current,
@@ -155,221 +128,77 @@ export default function Hero() {
                 style={{ background: "#080808", opacity: 0 }}
             />
 
-            {/* Main content */}
-            <div className="hero-content relative z-30 w-full max-w-7xl mx-auto px-6 lg:px-16 pt-24">
-                <div className="grid lg:grid-cols-[1fr_220px] gap-16 items-center">
+            {/* Main content - Layered Names & Image */}
+            <div className="hero-content absolute inset-0 z-30 pointer-events-none">
 
-                    {/* Left */}
-                    <div>
-
-                        {/* Badge */}
-                        <div ref={badgeRef} className="mb-10 opacity-0">
-                            <span
-                                className="inline-flex items-center gap-3 font-mono text-xs tracking-widest uppercase"
-                                style={{
-                                    padding: "10px 20px",
-                                    border: "1px solid rgba(0,255,135,0.2)",
-                                    color: "#00ff87",
-                                    background: "rgba(0,255,135,0.03)",
-                                }}
-                            >
-                                <span
-                                    style={{
-                                        width: "6px",
-                                        height: "6px",
-                                        borderRadius: "50%",
-                                        background: "#00ff87",
-                                        boxShadow: "0 0 10px #00ff87",
-                                        display: "inline-block",
-                                    }}
-                                />
-                                Available for work &nbsp;·&nbsp; Lahore, Pakistan
-                            </span>
-                        </div>
-
-                        {/* Heading */}
-                        <div className="mb-8">
-                            <h1
-                                className="font-display font-bold leading-[0.92] tracking-[-0.04em]"
-                                style={{ fontSize: "clamp(4rem, 10vw, 9rem)" }}
-                            >
-                                <div ref={line1Ref} className="overflow-hidden opacity-0">
-                                    <GlitchText
-                                        text="Sufiyan"
-                                        style={{ color: "#ededed", display: "block" }}
-                                    />
-                                </div>
-                                <div ref={line2Ref} className="overflow-hidden opacity-0">
-                                    <span
-                                        style={{
-                                            display: "block",
-                                            background:
-                                                "linear-gradient(135deg, #00ff87 30%, #60efff 100%)",
-                                            WebkitBackgroundClip: "text",
-                                            WebkitTextFillColor: "transparent",
-                                            backgroundClip: "text",
-                                        }}
-                                    >
-                                        Mirza
-                                    </span>
-                                </div>
-                                <div
-                                    ref={line3Ref}
-                                    className="overflow-hidden opacity-0"
-                                    style={{ marginTop: "0.8rem" }}
-                                >
-                                    <span
-                                        className="font-light font-mono"
-                                        style={{
-                                            fontSize: "clamp(0.9rem, 2vw, 1.8rem)",
-                                            color: "#6b7280",
-                                            letterSpacing: "0.05em",
-                                            display: "block",
-                                        }}
-                                    >
-                                        Full Stack Developer &amp; AI Systems Builder
-                                    </span>
-                                </div>
-                            </h1>
-                        </div>
-
-                        {/* Description */}
-                        <div ref={subRef} className="mb-10 opacity-0">
-                            <p
-                                className="font-body leading-relaxed max-w-lg"
-                                style={{
-                                    color: "#6b7280",
-                                    fontSize: "1.05rem",
-                                    borderLeft: "2px solid rgba(0,255,135,0.3)",
-                                    paddingLeft: "1.25rem",
-                                }}
-                            >
-                                I build{" "}
-                                <span style={{ color: "#ededed" }}>
-                                    production-grade web systems
-                                </span>{" "}
-                                — Laravel backends, Python microservices, and AI pipelines
-                                that actually ship.{" "}
-                                <span
-                                    style={{
-                                        color: "#00ff87",
-                                        fontFamily: "var(--font-mono)",
-                                    }}
-                                >
-                                    Currently building Recrify.
-                                </span>
-                            </p>
-                        </div>
-
-                        {/* CTA */}
-                        <div ref={ctaRef} className="flex flex-wrap gap-4 opacity-0">
-                            <a
-                                href="#projects"
-                                className="inline-flex items-center gap-2 font-display font-semibold text-sm"
-                                style={{
-                                    padding: "14px 36px",
-                                    background: "#00ff87",
-                                    color: "#080808",
-                                    transition: "all 0.3s ease",
-                                }}
-                                onMouseEnter={(e) => {
-                                    (e.currentTarget as HTMLElement).style.background = "#60efff";
-                                    (e.currentTarget as HTMLElement).style.boxShadow =
-                                        "0 0 40px rgba(0,255,135,0.3)";
-                                    (e.currentTarget as HTMLElement).style.transform =
-                                        "translateY(-2px)";
-                                }}
-                                onMouseLeave={(e) => {
-                                    (e.currentTarget as HTMLElement).style.background = "#00ff87";
-                                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                                    (e.currentTarget as HTMLElement).style.transform =
-                                        "translateY(0)";
-                                }}
-                            >
-                                View My Work
-                                <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                >
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
-                            </a>
-
-                            <a
-                                href="#contact"
-                                className="inline-flex items-center gap-2 font-display font-medium text-sm"
-                                style={{
-                                    padding: "14px 36px",
-                                    border: "1px solid #1a1a1a",
-                                    color: "#ededed",
-                                    transition: "all 0.3s ease",
-                                }}
-                                onMouseEnter={(e) => {
-                                    (e.currentTarget as HTMLElement).style.borderColor = "#00ff87";
-                                    (e.currentTarget as HTMLElement).style.color = "#00ff87";
-                                    (e.currentTarget as HTMLElement).style.transform =
-                                        "translateY(-2px)";
-                                }}
-                                onMouseLeave={(e) => {
-                                    (e.currentTarget as HTMLElement).style.borderColor = "#1a1a1a";
-                                    (e.currentTarget as HTMLElement).style.color = "#ededed";
-                                    (e.currentTarget as HTMLElement).style.transform =
-                                        "translateY(0)";
-                                }}
-                            >
-                                Get In Touch
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Right — Stats */}
-                    <div ref={statsRef} className="hidden lg:flex flex-col gap-0 opacity-0">
-                        {[
-                            { number: "3+", label: "Years\nExperience" },
-                            { number: "20+", label: "Projects\nDelivered" },
-                            { number: "02", label: "AI Systems\nBuilt" },
-                        ].map((stat, i) => (
-                            <div
-                                key={i}
-                                style={{
-                                    padding: "28px 24px",
-                                    borderTop: "1px solid #1a1a1a",
-                                    borderLeft: "1px solid #1a1a1a",
-                                }}
-                            >
-                                <div
-                                    className="font-display font-bold"
-                                    style={{
-                                        fontSize: "3rem",
-                                        lineHeight: 1,
-                                        background: "linear-gradient(135deg, #00ff87, #60efff)",
-                                        WebkitBackgroundClip: "text",
-                                        WebkitTextFillColor: "transparent",
-                                        backgroundClip: "text",
-                                    }}
-                                >
-                                    {stat.number}
-                                </div>
-                                <div
-                                    className="font-mono text-xs mt-2"
-                                    style={{
-                                        color: "#6b7280",
-                                        whiteSpace: "pre-line",
-                                        lineHeight: 1.6,
-                                        letterSpacing: "0.05em",
-                                    }}
-                                >
-                                    {stat.label}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
+                {/* SUFIYAN - Background Layer (Backmost) */}
+                <div
+                    ref={name1Ref}
+                    className="absolute opacity-0 select-none pointer-events-none flex items-center justify-center w-full"
+                    style={{
+                        zIndex: 1,
+                        top: "25%",
+                        left: "0",
+                    }}
+                >
+                    <h1
+                        className="font-display font-black leading-none tracking-tighter w-full text-center"
+                        style={{
+                            fontSize: "clamp(6rem, 22vw, 22rem)",
+                            color: "#ffffff",
+                            textShadow: "0 0 40px rgba(255,255,255,0.4), 0 0 80px rgba(255,255,255,0.2)",
+                            opacity: 0.9,
+                            letterSpacing: "-0.05em"
+                        }}
+                    >
+                        SUFIYAN
+                    </h1>
                 </div>
+
+                {/* User Image Layer (Middle) */}
+                <div
+                    ref={imageRef}
+                    className="absolute inset-0 opacity-0 pointer-events-none flex items-center justify-center"
+                    style={{ zIndex: 2 }}
+                >
+                    <div className="relative w-full h-full">
+                        <Image
+                            src="/assets/images/me.png"
+                            alt="Sufiyan Mirza"
+                            fill
+                            className="object-contain object-center brightness-[1.2] contrast-[1.1]"
+                            priority
+                        />
+                    </div>
+                </div>
+
+                {/* MIRZA - Foreground Layer (Uppermost) */}
+                <div
+                    ref={name2Ref}
+                    className="absolute opacity-0 select-none pointer-events-none flex items-center justify-center w-full"
+                    style={{
+                        zIndex: 3,
+                        bottom: "8%",
+                        left: "0",
+                    }}
+                >
+                    <h2
+                        className="font-display font-black leading-none tracking-tighter w-full text-center"
+                        style={{
+                            fontSize: "clamp(5rem, 16vw, 16rem)",
+                            color: "#ededed",
+                            WebkitTextStroke: "1px rgba(255,255,255,0.1)",
+                            background: "linear-gradient(135deg, #00ff87 30%, #60efff 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text",
+                            filter: "drop-shadow(0 0 50px rgba(0,255,135,0.4))"
+                        }}
+                    >
+                        MIRZA
+                    </h2>
+                </div>
+
             </div>
 
             {/* Scroll indicator */}
@@ -377,24 +206,18 @@ export default function Hero() {
                 ref={scrollRef}
                 className="absolute opacity-0"
                 style={{
-                    bottom: "2.5rem",
+                    bottom: "2rem",
                     left: "50%",
                     transform: "translateX(-50%)",
+                    zIndex: 50
                 }}
             >
                 <div className="flex flex-col items-center gap-2">
-                    <span
-                        className="font-mono text-xs tracking-widest uppercase"
-                        style={{ color: "#6b7280", letterSpacing: "0.2em" }}
-                    >
-                        Scroll
-                    </span>
                     <div
                         style={{
                             width: "1px",
-                            height: "60px",
+                            height: "40px",
                             background: "linear-gradient(to bottom, #00ff87, transparent)",
-                            boxShadow: "0 0 8px rgba(0,255,135,0.5)",
                         }}
                     />
                 </div>

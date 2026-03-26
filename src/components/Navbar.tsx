@@ -72,7 +72,7 @@ export default function Navbar() {
             y: 0,
             duration: 0.5,
             ease: "elastic.out(1, 0.5)",
-            color: "#6b7280",
+            color: "#ffffffff",
         });
     };
 
@@ -90,7 +90,7 @@ export default function Navbar() {
                     style={{
                         borderRadius: scrolled ? "16px" : "0px",
                         background: scrolled
-                            ? "rgba(12, 12, 12, 0.75)"
+                            ? "rgba(29, 25, 25, 0.75)"
                             : "transparent",
                         backdropFilter: scrolled ? "blur(24px) saturate(180%)" : "none",
                         WebkitBackdropFilter: scrolled
@@ -132,7 +132,7 @@ export default function Navbar() {
                                     key={i}
                                     href={link.href}
                                     className="nav-link opacity-0 relative font-mono text-xs tracking-widest uppercase group"
-                                    style={{ color: "#6b7280" }}
+                                    style={{ color: "#ffffffff" }}
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}
                                     onMouseEnter={(e) => {
