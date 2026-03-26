@@ -163,7 +163,7 @@ export default function Hero() {
                 >
                     <div className="relative w-full h-full">
                         <Image
-                            src="/assets/images/me.png"
+                            src="/assets/images/sufi.png"
                             alt="Sufiyan Mirza"
                             fill
                             className="object-contain object-center brightness-[1.2] contrast-[1.1]"
