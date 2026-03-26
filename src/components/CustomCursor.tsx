@@ -51,7 +51,7 @@ export default function CustomCursor() {
 
     const onMouseEnterLink = () => {
       gsap.to(ring, {
-        scale: 2.5,
+        scale: 1.8,
         borderColor: "#00ff87",
         backgroundColor: "rgba(0, 255, 135, 0.08)",
         duration: 0.3,
@@ -110,8 +110,8 @@ export default function CustomCursor() {
           position: "fixed",
           top: 0,
           left: 0,
-          width: "8px",
-          height: "8px",
+          width: "6px",
+          height: "6px",
           borderRadius: "50%",
           backgroundColor: "#00ff87",
           pointerEvents: "none",
@@ -125,8 +125,8 @@ export default function CustomCursor() {
           position: "fixed",
           top: 0,
           left: 0,
-          width: "32px",
-          height: "32px",
+          width: "28px",
+          height: "28px",
           borderRadius: "50%",
           border: "1px solid #00ff87",
           pointerEvents: "none",
