@@ -1,27 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Oxanium, Inter, JetBrains_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import BottomBlur from "@/components/BottomBlur";
 import Footer from "@/components/Footer";
 
-const oxanium = Oxanium({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-oxanium",
+  variable: "--font-montserrat",
   weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -53,7 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${oxanium.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+        className={`${montserrat.variable}`}
       >
         <SmoothScroll>
           <CustomCursor />
