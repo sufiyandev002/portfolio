@@ -5,6 +5,7 @@ import Skills from "@/components/sections/Skills";
 import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
 import BestThing from "@/components/sections/BestThing";
+import Cta from "@/components/sections/Cta";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Services />
       <Portfolio />
       <BestThing />
+      <Cta />
     </main>
   );
 }
