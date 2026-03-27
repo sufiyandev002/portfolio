@@ -85,7 +85,7 @@ export default function Cta() {
                 <div className="w-full lg:w-1/2 relative h-[500px] lg:h-[800px] overflow-hidden flex-shrink-0">
                     
                     <Image 
-                        src="/assets/images/sufi-2.png"
+                        src="/assets/images/sufi-2.webp"
                         alt="Sufiyan"
                         fill
                         className="object-cover object-center"

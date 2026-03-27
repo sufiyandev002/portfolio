@@ -129,7 +129,7 @@ export default function Navbar() {
                                 className="block"
                             >
                                 <Image 
-                                    src="/assets/images/sm.png" 
+                                    src="/assets/images/sm.webp" 
                                     alt="SM Logo" 
                                     width={140} 
                                     height={40}
