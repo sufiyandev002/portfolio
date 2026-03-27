@@ -25,13 +25,13 @@ const timelineItems = [
         text: "By day I architect Laravel backends and Python microservices. By night I obsess over UI micro-interactions and matching algorithm precision.",
         isParagraph: true,
     },
-    { icon: Building2, text: "Owner at ITmate" },
+    { icon: Building2, text: "Founder of ITmate" },
     { icon: Bot, text: "Building Recrify — an AI-powered ATS" },
     { icon: Database, text: "Exploring Vector DBs, NLP pipelines & XGBoost tuning" },
     { icon: Zap, text: "Obsessed with performance, clean code & smooth UX" },
     { icon: MapPin, text: "Based in Faisalabad, Pakistan" },
     { icon: MessageSquare, text: "Ask me about Laravel · FastAPI · AI Integration · WordPress" },
-    { icon: GraduationCap, text: "Bachelors in Computer Science with Silver Medal." },
+    { icon: GraduationCap, text: "Bachelors in Computer Science with Silver Medal - SILVER MEDALIST." },
 ];
 
 function GlassCard({ icon, text }: { icon: React.ElementType; text: string }) {
@@ -118,7 +118,7 @@ function GlassCard({ icon, text }: { icon: React.ElementType; text: string }) {
 
             <span
                 className="font-mono text-sm leading-snug"
-                style={{ color: "rgba(255,255,255,0.8)" }}
+                style={{ color: "rgba(255, 255, 255, 1)" }}
             >
                 {text}
             </span>

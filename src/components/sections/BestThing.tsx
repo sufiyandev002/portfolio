@@ -58,7 +58,7 @@ export default function BestThing() {
             className="relative bg-[#080808] w-full min-h-screen overflow-hidden border-t border-white/[0.02]"
         >
             {/* Spline Background */}
-            <div className="absolute inset-0 flex items-center justify-center z-0 opacity-90 md:opacity-100 pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center z-0 opacity-90 md:opacity-100">
                 <LazySpline scene="https://prod.spline.design/jAWRob53o02yzJPj/scene.splinecode" />
             </div>
 

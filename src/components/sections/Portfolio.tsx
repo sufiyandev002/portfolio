@@ -106,7 +106,7 @@ export default function Portfolio() {
                     {/* Left Info Panel */}
                     <div className="w-full xl:w-1/4 pt-2 xl:pt-20 flex-shrink-0">
                         <h3 className="font-display text-white text-xl md:text-2xl font-medium mb-4 md:mb-6">
-                            Proude Productions
+                            Proud Productions
                         </h3>
                         <div className="flex items-center gap-4 md:gap-6 group cursor-pointer">
                             <span className="font-body text-gray-400 text-sm md:text-base transition-colors duration-300 group-hover:text-white">

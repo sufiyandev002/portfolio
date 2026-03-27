@@ -99,7 +99,7 @@ export default function Skills() {
             className="relative bg-[#080808] w-full h-screen min-h-[1000px] overflow-hidden flex items-center justify-center border-t border-white/[0.02]"
         >
             {/* Title / Watermark in the background */}
-            <div className="absolute top-1 left-0 right-0 z-10 text-center pointer-events-none mb-6 pt-6">
+            <div className="absolute top-1 left-0 right-0 z-10 text-center mb-6 pt-6">
                 <h2
                     className="font-display font-medium text-white mb-4 uppercase tracking-tighter"
                     style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
@@ -112,7 +112,7 @@ export default function Skills() {
             </div>
 
             {/* Spline Model (Centered) */}
-            <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center z-0">
                 <LazySpline scene="https://prod.spline.design/qqSURHfCZ3QFDNca/scene.splinecode" />
             </div>
 
