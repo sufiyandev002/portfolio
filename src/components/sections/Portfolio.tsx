@@ -9,7 +9,7 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-    { title: "Project 1", image: "/assets/images/me.png" },
+    { title: "Project 1", image: "/assets/portfolio/recrify.webp" },
     { title: "Project 2", image: "/assets/images/me.png" },
     { title: "Project 3", image: "/assets/images/me.png" },
     { title: "Project 4", image: "/assets/images/me.png" },
