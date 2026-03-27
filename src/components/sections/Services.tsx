@@ -21,21 +21,21 @@ const services = [
             "React Website Development",
             "WordPress Website Development",
         ],
-        image: "/assets/images/me.png",
+        image: "/assets/services/website-development-service.webp",
     },
     {
-        title: "Branding and design",
+        title: "Frame works",
         number: "02",
         index: 1,
         techs: [
-            "UI/UX Design",
-            "Brand Identity",
-            "Logo Design",
-            "Motion Graphics",
-            "Typography Systems",
-            "Visual Hierarchy",
+            "Laravel",
+            "React.js",
+            "Node.js",
+            "CodeIgniter",
+            "Tailwind CSS",
+            "Bootstrap",
         ],
-        image: "/assets/images/me.png",
+        image: "/assets/services/frameworks.webp",
     },
     {
         title: "CRM system",
@@ -49,21 +49,21 @@ const services = [
             "Data Migration Strategy",
             "Customer Portals",
         ],
-        image: "/assets/images/me.png",
+        image: "/assets/services/crm-systems.webp",
     },
     {
         title: "E-commerce",
         number: "04",
         index: 3,
         techs: [
-            "Shopify Custom Themes",
+            "Wordpress Custom Themes",
             "WooCommerce Scaling",
             "Headless E-commerce",
             "Payment Gateway Integration",
             "Inventory Management",
             "Cart Optimization",
         ],
-        image: "/assets/images/me.png",
+        image: "/assets/services/ecommerce.webp",
     },
     {
         title: "AI Solutions",
@@ -77,7 +77,7 @@ const services = [
             "NLP Pipelines",
             "ML Model Deployment",
         ],
-        image: "/assets/images/me.png",
+        image: "/assets/services/ai-solutions.webp",
     },
 ];
 
@@ -270,7 +270,7 @@ export default function Services() {
                                             </div>
 
                                             {/* Right: Image */}
-                                            <div className="w-full lg:w-1/2 h-64 sm:h-80 lg:h-96 relative rounded-2xl overflow-hidden shadow-2xl">
+                                            <div className="w-full lg:w-1/2 h-84 sm:h-80 lg:h-100 relative overflow-hidden shadow-2xl">
                                                 <Image
                                                     src={service.image}
                                                     alt={service.title}
