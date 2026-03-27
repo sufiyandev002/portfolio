@@ -3,6 +3,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import BottomBlur from "@/components/BottomBlur";
 import Footer from "@/components/Footer";
 
@@ -93,6 +94,7 @@ export default function RootLayout({
       >
         <SmoothScroll>
           <CustomCursor />
+          <FloatingWhatsApp />
           {children}
           <Footer />
           <BottomBlur />

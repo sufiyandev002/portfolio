@@ -30,7 +30,7 @@ const timelineItems = [
     { icon: Database, text: "Exploring Vector DBs, NLP pipelines & XGBoost tuning" },
     { icon: Zap, text: "Obsessed with performance, clean code & smooth UX" },
     { icon: MapPin, text: "Based in Faisalabad, Pakistan" },
-    { icon: MessageSquare, text: "Ask me about Laravel · FastAPI · AI Integration · WordPress" },
+    { icon: MessageSquare, text: "Ask me about Laravel · FastAPI · AI Integration · WordPress", href: "https://wa.me/923091761099" },
     { icon: GraduationCap, text: "Bachelors in Computer Science with Silver Medal - SILVER MEDALIST." },
 ];
 
@@ -339,7 +339,13 @@ export default function About() {
                                             </div>
                                         ) : (
                                             <div className="timeline-card" style={{ opacity: 0 }}>
-                                                <GlassCard icon={Icon!} text={item.text} />
+                                                {(item as any).href ? (
+                                                    <a href={(item as any).href} target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                                                        <GlassCard icon={Icon!} text={item.text} />
+                                                    </a>
+                                                ) : (
+                                                    <GlassCard icon={Icon!} text={item.text} />
+                                                )}
                                             </div>
                                         )}
                                     </div>

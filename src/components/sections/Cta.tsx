@@ -122,18 +122,32 @@ export default function Cta() {
 
                         <div className="flex items-center gap-4">
                             {/* CTA Pill Button (Magnetic) */}
-                            <MagneticArea>
-                                <button aria-label="Discuss your project with Sufiyan" className="bg-white hover:bg-gray-200 text-black px-8 py-5 rounded-full font-display text-sm font-bold tracking-widest cursor-pointer group">
-                                    DISCUSS THE PROJECT
-                                </button>
-                            </MagneticArea>
+                            <a 
+                                href="https://wa.me/923091761099" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="inline-block"
+                            >
+                                <MagneticArea>
+                                    <div className="bg-white hover:bg-gray-200 text-black px-8 py-5 rounded-full font-display text-sm font-bold tracking-widest cursor-pointer group">
+                                        DISCUSS THE PROJECT
+                                    </div>
+                                </MagneticArea>
+                            </a>
                             
                             {/* Circular Arrow Button (Magnetic) */}
-                            <MagneticArea>
-                                <button aria-label="Get in touch" className="bg-white hover:bg-[#00ff87] text-black w-14 h-14 rounded-full flex items-center justify-center cursor-pointer transition-colors duration-300 group">
-                                    <ArrowRight size={22} className="transition-transform duration-300 group-hover:-rotate-45" />
-                                </button>
-                            </MagneticArea>
+                            <a 
+                                href="https://wa.me/923091761099" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="inline-block"
+                            >
+                                <MagneticArea>
+                                    <div className="bg-white hover:bg-[#00ff87] text-black w-14 h-14 rounded-full flex items-center justify-center cursor-pointer transition-colors duration-300 group">
+                                        <ArrowRight size={22} className="transition-transform duration-300 group-hover:-rotate-45" />
+                                    </div>
+                                </MagneticArea>
+                            </a>
                         </div>
                     </div>
 
