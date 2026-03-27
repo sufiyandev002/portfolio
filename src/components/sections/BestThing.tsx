@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Spline from "@splinetool/react-spline";
+import LazySpline from "@/components/LazySpline";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,7 +59,7 @@ export default function BestThing() {
         >
             {/* Spline Background */}
             <div className="absolute inset-0 flex items-center justify-center z-0 opacity-90 md:opacity-100 pointer-events-none">
-                <Spline scene="https://prod.spline.design/jAWRob53o02yzJPj/scene.splinecode" />
+                <LazySpline scene="https://prod.spline.design/jAWRob53o02yzJPj/scene.splinecode" />
             </div>
 
             {/* Top Left Area */}

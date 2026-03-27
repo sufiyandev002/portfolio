@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Spline from "@splinetool/react-spline";
+import LazySpline from "@/components/LazySpline";
 import {
     Building2,
     Bot,
@@ -409,7 +409,7 @@ export default function About() {
                         }}
                     />
 
-                    <Spline scene="https://prod.spline.design/vNIcF0wIQsRTS-V2/scene.splinecode" />
+                    <LazySpline scene="https://prod.spline.design/vNIcF0wIQsRTS-V2/scene.splinecode" />
                 </div>
             </div>
         </section>
