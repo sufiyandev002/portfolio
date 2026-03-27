@@ -4,8 +4,7 @@ import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
-import Projects from "@/components/sections/Projects";
-import Stack from "@/components/sections/Stack";
+import BestThing from "@/components/sections/BestThing";
 
 export default function Home() {
   return (
@@ -16,8 +15,7 @@ export default function Home() {
       <Skills />
       <Services />
       <Portfolio />
-      <Projects />
-      <Stack />
+      <BestThing />
     </main>
   );
 }
