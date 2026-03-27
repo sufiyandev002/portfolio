@@ -104,6 +104,7 @@ export default function CustomCursor() {
 
   return (
     <>
+    <div className="hidden md:block">
       <div
         ref={cursorDotRef}
         style={{
@@ -134,6 +135,7 @@ export default function CustomCursor() {
           transform: "translate(-50%, -50%)",
         }}
       />
+    </div>
     </>
   );
 }

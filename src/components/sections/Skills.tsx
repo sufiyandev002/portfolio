@@ -112,7 +112,7 @@ export default function Skills() {
             </div>
 
             {/* Spline Model (Centered) */}
-            <div className="absolute inset-0 flex items-center justify-center z-0 scale-90 md:scale-100 pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
                 <LazySpline scene="https://prod.spline.design/qqSURHfCZ3QFDNca/scene.splinecode" />
             </div>
 

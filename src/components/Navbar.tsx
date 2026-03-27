@@ -14,9 +14,10 @@ interface NavLink {
 
 const links: NavLink[] = [
     { label: "About", href: "#about", icon: User },
-    { label: "Projects", href: "#projects", icon: Code },
-    { label: "Stack", href: "#stack", icon: Layout },
-    { label: "Contact", href: "#contact", icon: Mail },
+    { label: "Skills", href: "#skills", icon: Layout },
+    { label: "Services", href: "#services", icon: Code },
+    { label: "Portfolio", href: "#portfolio", icon: Layout },
+    { label: "Contact", href: "#cta", icon: Mail },
 ];
 
 export default function Navbar() {
@@ -85,6 +86,18 @@ export default function Navbar() {
         });
     };
 
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+            const top = (target as HTMLElement).offsetTop;
+            window.scrollTo({
+                top: top - 80, // Offset for navbar height
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
         <>
             <div
@@ -144,6 +157,7 @@ export default function Navbar() {
                                 <a
                                     key={i}
                                     href={link.href}
+                                    onClick={(e) => scrollToSection(e, link.href)}
                                     className="nav-link opacity-0 flex items-center gap-2 relative group px-2 py-1"
                                     style={{ color: "#ffffff" }}
                                     onMouseMove={handleMouseMove}
@@ -168,7 +182,11 @@ export default function Navbar() {
 
                         {/* FIXED CTA */}
                         <div ref={ctaRef} className="opacity-0 hidden md:block">
-                            <a href="#contact" style={{ display: "inline-block", textDecoration: "none" }}>
+                            <a 
+                                href="#cta" 
+                                onClick={(e) => scrollToSection(e, "#cta")}
+                                style={{ display: "inline-block", textDecoration: "none" }}
+                            >
                                 <StyledWrapper>
                                     <button className="button">
                                         <span className="shadow" />
@@ -206,37 +224,83 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* FIXED MOBILE MENU */}
+            {/* PREMIUM MOBILE MENU — full screen overlay */}
             <div
-                className="fixed inset-0 z-40 md:hidden flex flex-col justify-center items-center gap-10"
+                className="fixed inset-0 z-40 md:hidden"
                 style={{
                     background: "#080808",
                     opacity: menuOpen ? 1 : 0,
                     pointerEvents: menuOpen ? "all" : "none",
-                    transition: "opacity 0.4s ease",
+                    transition: "opacity 0.45s cubic-bezier(0.4,0,0.2,1)",
                 }}
             >
-                {links.map((link, i) => (
+                {/* Radial glow accent */}
+                <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                        background: "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(0,255,135,0.05) 0%, transparent 70%)",
+                    }}
+                />
+
+                {/* Top bar inside menu with logo */}
+                <div className="flex items-center justify-between px-6 pt-8 pb-6 border-b border-white/[0.05]">
+                    <span className="font-mono text-xs tracking-[0.3em] text-[#00ff87] uppercase">Menu</span>
+                    <span className="font-mono text-xs text-gray-600">{String(links.length).padStart(2, "0")} links</span>
+                </div>
+
+                {/* Nav Links */}
+                <div className="flex flex-col px-6 pt-8">
+                    {links.map((link, i) => (
+                        <a
+                            key={i}
+                            href={link.href}
+                            onClick={(e) => {
+                                setMenuOpen(false);
+                                scrollToSection(e, link.href);
+                            }}
+                            className="flex items-center justify-between py-6 border-b border-white/[0.06] group"
+                            style={{
+                                transform: menuOpen ? "translateX(0)" : "translateX(-30px)",
+                                opacity: menuOpen ? 1 : 0,
+                                transition: `transform 0.5s cubic-bezier(0.4,0,0.2,1) ${i * 80}ms, opacity 0.4s ease ${i * 80}ms`,
+                            }}
+                        >
+                            <div className="flex items-center gap-5">
+                                <span
+                                    className="font-mono text-xs"
+                                    style={{ color: "rgba(255,255,255,0.25)" }}
+                                >
+                                    {String(i + 1).padStart(2, "0")}
+                                </span>
+                                <span
+                                    className="font-display font-medium transition-colors duration-200 group-hover:text-[#00ff87]"
+                                    style={{ fontSize: "clamp(1.8rem, 7vw, 2.5rem)", color: "#ededed" }}
+                                >
+                                    {link.label}
+                                </span>
+                            </div>
+                            <link.icon
+                                className="w-5 h-5 opacity-20 group-hover:opacity-100 transition-opacity duration-200"
+                                style={{ color: "#00ff87" }}
+                            />
+                        </a>
+                    ))}
+                </div>
+
+                {/* Bottom hire line */}
+                <div className="absolute bottom-12 left-6 right-6 flex items-center justify-between">
+                    <span className="font-mono text-xs text-gray-600 tracking-widest uppercase">Available for work</span>
                     <a
-                        key={i}
-                        href={link.href}
-                        className="font-display font-bold flex items-center gap-4"
-                        style={{
-                            fontSize: "clamp(2rem, 8vw, 3.5rem)",
-                            color: "#ededed",
+                        href="#cta"
+                        onClick={(e) => {
+                            setMenuOpen(false);
+                            scrollToSection(e, "#cta");
                         }}
-                        onClick={() => setMenuOpen(false)}
-                        onMouseEnter={(e) => {
-                            (e.currentTarget as HTMLElement).style.color = "#00ff87";
-                        }}
-                        onMouseLeave={(e) => {
-                            (e.currentTarget as HTMLElement).style.color = "#ededed";
-                        }}
+                        className="font-mono text-xs text-[#00ff87] tracking-widest uppercase hover:underline"
                     >
-                        <link.icon className="w-[1em] h-[1em] opacity-50" />
-                        {link.label}
+                        Hire Me →
                     </a>
-                ))}
+                </div>
             </div>
         </>
     );

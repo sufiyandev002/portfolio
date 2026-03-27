@@ -14,8 +14,10 @@
   --font-mono: var(--font-montserrat), sans-serif;
 }
 
-* {
-  cursor: none !important;
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
 }
 
 html {
@@ -71,4 +73,13 @@ body {
 @keyframes scrollLine {
   0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
   100% { transform: scaleY(1); transform-origin: top; opacity: 0.3; }
+}
+
+/* Force Spline canvases to always fill their parent container (fixes mobile width) */
+canvas[data-engine],
+spline-viewer,
+[class*="spline"] canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }

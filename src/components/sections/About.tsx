@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const timelineItems = [
     {
-        text: "I'm a Full Stack Developer from Lahore, Pakistan who builds things at the intersection of clean backend architecture, intelligent AI systems, and pixel-perfect interfaces.",
+        text: "I'm a Full Stack Developer from Faisalabad, Pakistan who builds things at the intersection of clean backend architecture, intelligent AI systems, and pixel-perfect interfaces.",
         isParagraph: true,
     },
     {
@@ -29,7 +29,7 @@ const timelineItems = [
     { icon: Bot, text: "Building Recrify — an AI-powered ATS" },
     { icon: Database, text: "Exploring Vector DBs, NLP pipelines & XGBoost tuning" },
     { icon: Zap, text: "Obsessed with performance, clean code & smooth UX" },
-    { icon: MapPin, text: "Based in Lahore, Pakistan" },
+    { icon: MapPin, text: "Based in Faisalabad, Pakistan" },
     { icon: MessageSquare, text: "Ask me about Laravel · FastAPI · AI Integration · WordPress" },
     { icon: GraduationCap, text: "Bachelors in Computer Science with Silver Medal." },
 ];

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   // Core
   title: "Sufiyan Mirza — Full Stack Developer & AI Engineer",
   description:
-    "Full Stack Developer specializing in Laravel, Python, AI Systems, and modern web architecture. Building production-grade, intelligent systems from Lahore, Pakistan.",
+    "Full Stack Developer specializing in Laravel, Python, AI Systems, and modern web architecture. Building production-grade, intelligent systems from Faisalabad, Pakistan.",
   keywords: [
     "Sufiyan Mirza",
     "Full Stack Developer",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "AI Engineer",
     "Python Developer",
     "Web Developer Pakistan",
-    "Lahore Developer",
+    "Faisalabad Developer",
     "Next.js",
     "React",
     "Sufiyan",
