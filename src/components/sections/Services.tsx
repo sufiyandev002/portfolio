@@ -164,9 +164,9 @@ export default function Services() {
         <section
             ref={sectionRef}
             id="services"
-            className="bg-[#080808] pb-48 border-t border-white/[0.02]"
+            className="bg-[#080808] w-full pb-48 border-t border-white/[0.02]"
         >
-            <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
+            <div className="max-w-[1800px] mx-auto px-6 lg:px-16">
 
                 {/* Heading */}
                 <div ref={headingRef} style={{ opacity: 0 }}>
