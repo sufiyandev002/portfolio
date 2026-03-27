@@ -1,12 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Stack", href: "#stack" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects", href: "#portfolio" },
+  { label: "Stack", href: "#skills" },
+  { label: "Contact", href: "#cta" },
 ];
 
 const socialLinks = [
@@ -54,6 +55,26 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: "Asia/Karachi",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      };
+      const timeString = new Intl.DateTimeFormat("en-US", options).format(now);
+      setTime(`${timeString.toUpperCase()} PKT`);
+    };
+
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <footer className="relative pt-24 pb-12 overflow-hidden px-6 lg:px-16">
       {/* First Row: Nav, Socials & Slider */}
@@ -138,7 +159,7 @@ export default function Footer() {
             <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shadow-[0_0_8px_#00ff87]" />
             Faisalabad, PK
           </span>
-          <span>19:12 PM PKT</span>
+          <span>{time || "11:34 PM PKT"}</span>
         </div>
         <p>Built with Passion & Next.js</p>
       </div>
@@ -150,14 +171,15 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="w-full text-center font-display font-black uppercase tracking-[-0.08em] leading-[0.7] m-0 p-0 overflow-hidden"
+          className="w-full text-center font-display font-black uppercase tracking-[-0.08em] leading-[0.7] m-0 p-0 overflow-hidden pt-3 pb-3"
           style={{
             fontSize: "calc(100vw / 4.2)",
-            background: "linear-gradient(to bottom, #ededed 25%, rgba(237, 237, 237, 0.05) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            fontFamily: "var(--font-montserrat)",
+            // background: "linear-gradient(to bottom, #ededed 25%, rgba(237, 237, 237, 0.05) 100%)",
+            // WebkitBackgroundClip: "text",
+            // WebkitTextFillColor: "transparent",
+            // backgroundClip: "text",
+            // fontFamily: "var(--font-montserrat)",
+            color: "#ffffffff",
           }}
         >
           sufiyan

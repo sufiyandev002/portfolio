@@ -104,20 +104,20 @@ export default function Cta() {
                     {/* Top List Area */}
                     <div className="mb-20">
                         <h3 className="font-display text-white text-3xl sm:text-4xl md:text-5xl font-medium mb-2">
-                            AI Tools:
+                            Why Choose Me?
                         </h3>
                         {/* Greyed out list items */}
                         <div className="flex flex-col gap-1 text-[#6b7280] font-body text-3xl sm:text-4xl md:text-5xl font-light">
-                            <p className="transition-colors hover:text-white cursor-default">Content Writing.</p>
-                            <p className="transition-colors hover:text-white cursor-default">Image Generation.</p>
-                            <p className="transition-colors hover:text-white cursor-default">Optimization.</p>
+                            <p className="transition-colors hover:text-white cursor-default">Ownership.</p>
+                            <p className="transition-colors hover:text-white cursor-default">Development.</p>
+                            <p className="transition-colors hover:text-white cursor-default">Production.</p>
                         </div>
                     </div>
 
                     {/* Bottom CTA Area */}
                     <div>
                         <h2 className="font-display text-white text-3xl sm:text-4xl md:text-5xl leading-[1.2] font-medium max-w-xl mb-12">
-                            More Solutions for the Uniqueness of Your Business
+                            I do what I love & <br />I love what I do.
                         </h2>
 
                         <div className="flex items-center gap-4">
@@ -130,7 +130,7 @@ export default function Cta() {
                             >
                                 <MagneticArea>
                                     <div className="bg-white hover:bg-gray-200 text-black px-8 py-5 rounded-full font-display text-sm font-bold tracking-widest cursor-pointer group">
-                                        DISCUSS THE PROJECT
+                                        Wanna Involve?
                                     </div>
                                 </MagneticArea>
                             </a>

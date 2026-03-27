@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Sufiyan Mirza — Full Stack Developer & AI Engineer",
   description:
     "Full Stack Developer specializing in Laravel, Python, AI Systems, and modern web architecture. Building production-grade, intelligent systems from Faisalabad, Pakistan.",
+    icons: {
+        icon: "/sufi-2.png",
+    },
   keywords: [
     "Sufiyan Mirza",
     "Full Stack Developer",

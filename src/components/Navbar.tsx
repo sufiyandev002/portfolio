@@ -17,7 +17,7 @@ const links: NavLink[] = [
     { label: "Skills", href: "#skills", icon: Layout },
     { label: "Services", href: "#services", icon: Code },
     { label: "Portfolio", href: "#portfolio", icon: Layout },
-    { label: "Contact", href: "https://wa.me/923091761099", icon: Mail },
+    { label: "Contact", href: "#cta", icon: Mail },
 ];
 
 export default function Navbar() {
