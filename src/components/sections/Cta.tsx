@@ -15,13 +15,17 @@ const MagneticArea = ({ children, className }: { children: React.ReactNode, clas
         const el = ref.current;
         if (!el) return;
 
+        const xTo = gsap.quickTo(el, "x", { duration: 0.8, ease: "power3.out" });
+        const yTo = gsap.quickTo(el, "y", { duration: 0.8, ease: "power3.out" });
+
         const handleMouseMove = (e: MouseEvent) => {
             const rect = el.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
             
-            // Move it 30% of the distance from the center
-            gsap.to(el, { x: x * 0.3, y: y * 0.3, duration: 0.8, ease: "power3.out" });
+            // Move it 30% of the distance from the center using high-performance quickTo
+            xTo(x * 0.3);
+            yTo(y * 0.3);
         };
 
         const handleMouseLeave = () => {
@@ -119,14 +123,14 @@ export default function Cta() {
                         <div className="flex items-center gap-4">
                             {/* CTA Pill Button (Magnetic) */}
                             <MagneticArea>
-                                <button className="bg-white hover:bg-gray-200 text-black px-8 py-5 rounded-full font-display text-sm font-bold tracking-widest cursor-pointer group">
+                                <button aria-label="Discuss your project with Sufiyan" className="bg-white hover:bg-gray-200 text-black px-8 py-5 rounded-full font-display text-sm font-bold tracking-widest cursor-pointer group">
                                     DISCUSS THE PROJECT
                                 </button>
                             </MagneticArea>
                             
                             {/* Circular Arrow Button (Magnetic) */}
                             <MagneticArea>
-                                <button className="bg-white hover:bg-[#00ff87] text-black w-14 h-14 rounded-full flex items-center justify-center cursor-pointer transition-colors duration-300 group">
+                                <button aria-label="Get in touch" className="bg-white hover:bg-[#00ff87] text-black w-14 h-14 rounded-full flex items-center justify-center cursor-pointer transition-colors duration-300 group">
                                     <ArrowRight size={22} className="transition-transform duration-300 group-hover:-rotate-45" />
                                 </button>
                             </MagneticArea>

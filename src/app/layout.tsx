@@ -13,24 +13,72 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Sufiyan Mirza — Full Stack Developer",
+  // Core
+  title: "Sufiyan Mirza — Full Stack Developer & AI Engineer",
   description:
-    "Full Stack Developer specializing in Laravel, AI Systems, and modern web architecture. Building production-grade systems from Lahore, Pakistan.",
+    "Full Stack Developer specializing in Laravel, Python, AI Systems, and modern web architecture. Building production-grade, intelligent systems from Lahore, Pakistan.",
   keywords: [
     "Sufiyan Mirza",
     "Full Stack Developer",
-    "Laravel",
-    "Python",
-    "AI Systems",
+    "Laravel Developer",
+    "AI Engineer",
+    "Python Developer",
     "Web Developer Pakistan",
+    "Lahore Developer",
+    "Next.js",
+    "React",
+    "Sufiyan",
   ],
-  authors: [{ name: "Sufiyan Mirza" }],
+  authors: [{ name: "Sufiyan Mirza", url: "https://sufiyanmirza.dev" }],
+  creator: "Sufiyan Mirza",
+
+  // Canonical URL – update to your real Vercel domain before deployment
+  metadataBase: new URL("https://sufiyanmirza.dev"),
+  alternates: {
+    canonical: "/",
+  },
+
+  // Robots
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  // Open Graph (LinkedIn, Facebook, WhatsApp previews)
   openGraph: {
-    title: "Sufiyan Mirza — Full Stack Developer",
-    description: "Building systems that think.",
+    title: "Sufiyan Mirza — Full Stack Developer & AI Engineer",
+    description: "Building systems that think. Laravel · Python · AI · Next.js",
+    url: "https://sufiyanmirza.dev",
+    siteName: "Sufiyan Mirza Portfolio",
+    locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/assets/images/og-image.png", // Add a 1200x630 OG preview image here
+        width: 1200,
+        height: 630,
+        alt: "Sufiyan Mirza — Full Stack Developer",
+      },
+    ],
+  },
+
+  // Twitter / X Card
+  twitter: {
+    card: "summary_large_image",
+    title: "Sufiyan Mirza — Full Stack Developer",
+    description: "Building systems that think. Laravel · Python · AI · Next.js",
+    creator: "@sufiyanmirza", // Update to your real Twitter handle
+    images: ["/assets/images/og-image.png"],
   },
 };
+
 
 export default function RootLayout({
   children,

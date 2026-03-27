@@ -185,6 +185,8 @@ export default function Navbar() {
                         <button
                             className="md:hidden flex flex-col gap-1.5 p-2"
                             onClick={() => setMenuOpen(!menuOpen)}
+                            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+                            aria-expanded={menuOpen}
                             style={{ cursor: "none", background: "none", border: "none" }}
                         >
                             <span style={{

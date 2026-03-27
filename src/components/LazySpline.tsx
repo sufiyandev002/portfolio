@@ -36,8 +36,15 @@ export default function LazySpline({ scene }: LazySplineProps) {
             {isIntersecting ? (
                 <Spline scene={scene} />
             ) : (
-                // Invisible placeholder to hold the container structure while waiting
-                <div className="absolute inset-0 bg-transparent" />
+                // Pulsing skeleton placeholder while the Spline scene hasn't loaded yet
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div
+                        className="w-32 h-32 rounded-full animate-pulse"
+                        style={{
+                            background: "radial-gradient(circle, rgba(0,255,135,0.08) 0%, transparent 70%)",
+                        }}
+                    />
+                </div>
             )}
         </div>
     );

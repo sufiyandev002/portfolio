@@ -164,7 +164,7 @@ export default function Services() {
         <section
             ref={sectionRef}
             id="services"
-            className="bg-[#080808] w-full pb-48 border-t border-white/[0.02]"
+            className="bg-[#080808] w-full lg:pb-48 border-t border-white/[0.02]"
         >
             <div className="max-w-[1800px] mx-auto px-6 lg:px-16">
 
@@ -260,10 +260,10 @@ export default function Services() {
                                                 </div>
 
                                                 <div className="flex items-center gap-4 mt-8">
-                                                    <button className="bg-white hover:bg-[#00ff87] text-black px-8 py-4 rounded-full font-display text-sm font-bold tracking-widest transition-colors duration-300 cursor-pointer">
+                                                    <button aria-label={`View details for ${service.title}`} className="bg-white hover:bg-[#00ff87] text-black px-8 py-4 rounded-full font-display text-sm font-bold tracking-widest transition-colors duration-300 cursor-pointer">
                                                         VIEW SERVICE DETAILS
                                                     </button>
-                                                    <button className="bg-white hover:bg-[#00ff87] text-black w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer group/btn">
+                                                    <button aria-label={`Explore ${service.title} service`} className="bg-white hover:bg-[#00ff87] text-black w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer group/btn">
                                                         <ArrowUpRight size={20} className="group-hover/btn:rotate-12 transition-transform" />
                                                     </button>
                                                 </div>
