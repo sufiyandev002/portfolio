@@ -78,22 +78,20 @@ export default function Cta() {
             <div className="max-w-[1800px] w-full mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between min-h-[70vh]">
                 
                 {/* Left Side: Faded Image */}
-                <div className="w-full lg:w-1/2 flex justify-center lg:justify-start relative h-[400px] sm:h-[600px] lg:h-[800px]">
-                    {/* The image container uses a CSS mask to create the seamless fade into black */}
-                    <div 
-                        className="relative w-full h-full max-w-[600px]"
-                        style={{
-                            WebkitMaskImage: "radial-gradient(circle at center, black 40%, transparent 70%)",
-                            maskImage: "radial-gradient(circle at center, black 40%, transparent 70%)"
-                        }}
-                    >
-                        <Image 
-                            src="/assets/images/sufi-2.png"
-                            alt="Sufiyan"
-                            fill
-                            className="object-contain lg:object-cover scale-110 lg:scale-100"
-                        />
-                    </div>
+                <div className="w-full lg:w-1/2 relative h-[500px] lg:h-[800px] overflow-hidden flex-shrink-0">
+                    
+                    <Image 
+                        src="/assets/images/sufi-2.png"
+                        alt="Sufiyan"
+                        fill
+                        className="object-cover object-center"
+                    />
+
+                    {/* Seamless Gradient Overlays merging into background #080808 */}
+                    <div className="absolute top-0 inset-x-0 h-32 md:h-48 bg-gradient-to-b from-[#080808] to-transparent pointer-events-none" />
+                    <div className="absolute bottom-0 inset-x-0 h-32 md:h-48 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none" />
+                    <div className="absolute left-0 inset-y-0 w-32 md:w-48 bg-gradient-to-r from-[#080808] to-transparent pointer-events-none" />
+                    <div className="absolute right-0 inset-y-0 w-32 md:w-48 bg-gradient-to-l from-[#080808] to-transparent pointer-events-none" />
                 </div>
 
                 {/* Right Side: Content & Magnetic Button */}
