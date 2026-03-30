@@ -24,7 +24,7 @@ const steps = [
         color: "#60efff",
         number: "02",
         position: { top: "40%", left: "30%" },
-        activateAt: 0.31,
+        activateAt: 0.23,
     },
     {
         title: "Development",
@@ -33,7 +33,7 @@ const steps = [
         color: "#60efff",
         number: "03",
         position: { top: "60%", left: "65%" },
-        activateAt: 0.60,
+        activateAt: 0.67,
     },
     {
         title: "Deployment",
@@ -42,7 +42,7 @@ const steps = [
         color: "#00ff87",
         number: "04",
         position: { top: "75%", left: "90%" },
-        activateAt: 0.92,
+        activateAt: 0.98,
     },
 ];
 
@@ -196,7 +196,7 @@ export default function HowIWork() {
         });
 
         return () => { st.kill(); };
-    }, []);
+    }, [steps]);
 
     return (
         <>
@@ -280,7 +280,7 @@ export default function HowIWork() {
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
                         <span
                             className="font-display font-black text-white uppercase tracking-tighter leading-none"
-                            style={{ fontSize: "clamp(5rem, 18vw, 16rem)", opacity: 0.09 }}
+                            style={{ fontSize: "clamp(5rem, 18vw, 16rem)", opacity: 0.1 }}
                         >
                             WORKFLOW
                         </span>

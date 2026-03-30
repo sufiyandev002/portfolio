@@ -36,17 +36,15 @@ body {
   color: #080808;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
-  width: 4px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #0f0f0f;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #00ff87;
-  border-radius: 2px;
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .text-gradient {
@@ -71,8 +69,17 @@ body {
 }
 
 @keyframes scrollLine {
-  0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
-  100% { transform: scaleY(1); transform-origin: top; opacity: 0.3; }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 0.3;
+  }
 }
 
 /* Force Spline canvases to always fill their parent container (fixes mobile width) */

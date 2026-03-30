@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <main className="bg-background">
       <Navbar />
-      <Hero />
+      {/* <Hero />
       <About />
       <Skills />
       <Services />
       <Portfolio />
-      <BestThing />
+      <BestThing /> */}
       <HowIWork />
       <Cta />
     </main>
