@@ -184,7 +184,7 @@ export default function Navbar() {
                         {/* FIXED CTA */}
                         <div ref={ctaRef} className="opacity-0 hidden md:block">
                             <a 
-                                href="https://wa.me/923091761099" 
+                                href="https://wa.me/923146536063" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 style={{ display: "inline-block", textDecoration: "none" }}
@@ -293,7 +293,7 @@ export default function Navbar() {
                 <div className="absolute bottom-12 left-6 right-6 flex items-center justify-between">
                     <span className="font-mono text-xs text-gray-600 tracking-widest uppercase">Available for work</span>
                     <a
-                        href="https://wa.me/923091761099"
+                        href="https://wa.me/923146536063"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-mono text-xs text-[#00ff87] tracking-widest uppercase hover:underline"

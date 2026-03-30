@@ -9,11 +9,14 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-    { title: "Project 1", image: "/assets/portfolio/recrify.webp" },
-    { title: "Project 2", image: "/assets/images/me.png" },
-    { title: "Project 3", image: "/assets/images/me.png" },
-    { title: "Project 4", image: "/assets/images/me.png" },
-    { title: "Project 5", image: "/assets/images/me.png" },
+    { title: "Recrify", image: "/assets/portfolio/recrify.webp" },
+    { title: "REM", image: "/assets/portfolio/rem.webp" },
+    { title: "Realtorsin", image: "/assets/portfolio/realtorsin.webp" },
+    { title: "LMS", image: "/assets/portfolio/lms.webp" },
+    { title: "Fashion Dream", image: "/assets/portfolio/fashiondreams.webp" },
+    { title: "Real Estate", image: "/assets/portfolio/realestate.webp" },
+    { title: "Top 7 Consultants", image: "/assets/portfolio/top-7.webp" },
+    { title: "Saddi Fashions", image: "/assets/portfolio/saddifash.webp" },
 ];
 
 // Duplicate for infinite loop
@@ -145,7 +148,7 @@ export default function Portfolio() {
                             {loopedProjects.map((project, index) => (
                                 <div
                                     key={index}
-                                    className="relative w-[85vw] sm:w-[400px] md:w-[450px] lg:w-[500px] aspect-square md:aspect-[4/4.5] bg-[#111] overflow-hidden group flex-shrink-0"
+                                    className="relative w-[85vw] sm:w-[400px] md:w-[450px] lg:w-[480px] lg:h-[630px] aspect-square md:aspect-[4/4.5] bg-[#111] overflow-hidden group flex-shrink-0"
                                 >
                                     <Image
                                         src={project.image}
@@ -158,11 +161,7 @@ export default function Portfolio() {
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center pointer-events-none"
                                         // style={{ background: "linear-gradient(135deg, rgba(0,255,135,0.15) 0%, rgba(96,239,255,0.1) 100%)" }}
                                     >
-                                        {/* Accent border on hover */}
-                                        {/* <div
-                                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                                            style={{ boxShadow: "inset 0 0 0 1px rgba(0,255,135,0.4)" }}
-                                        /> */}
+
                                         <div className="flex items-center gap-3 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
                                             <span className="font-display text-white text-lg tracking-widest uppercase font-medium">
                                                 Explore

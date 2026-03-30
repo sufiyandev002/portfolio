@@ -52,7 +52,7 @@ export default function FloatingWhatsApp() {
     return (
         <a
             ref={buttonRef}
-            href="https://wa.me/923091761099"
+            href="https://wa.me/923146536063"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Contact on WhatsApp"

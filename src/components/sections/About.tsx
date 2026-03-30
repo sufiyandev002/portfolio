@@ -30,7 +30,7 @@ const timelineItems = [
     { icon: Database, text: "Exploring Vector DBs, NLP pipelines & XGBoost tuning" },
     { icon: Zap, text: "Obsessed with performance, clean code & smooth UX" },
     { icon: MapPin, text: "Based in Faisalabad, Pakistan" },
-    { icon: MessageSquare, text: "Ask me about Laravel · FastAPI · AI Integration · WordPress", href: "https://wa.me/923091761099" },
+    { icon: MessageSquare, text: "Ask me about Laravel · FastAPI · AI Integration · WordPress", href: "https://wa.me/923146536063" },
     { icon: GraduationCap, text: "Bachelors in Computer Science with Silver Medal - SILVER MEDALIST." },
 ];
 

@@ -54,6 +54,17 @@ const socialLinks = [
   },
 ];
 
+const footerProjects = [
+  { name: "Recrify", image: "/assets/portfolio/recrify.webp" },
+  { name: "REM", image: "/assets/portfolio/rem.webp" },
+  { name: "Realtorsin", image: "/assets/portfolio/realtorsin.webp" },
+  { name: "LMS", image: "/assets/portfolio/lms.webp" },
+  { name: "Fashion Dream", image: "/assets/portfolio/fashiondreams.webp" },
+  { name: "Real Estate", image: "/assets/portfolio/realestate.webp" },
+  { name: "Top 7", image: "/assets/portfolio/top-7.webp" },
+  { name: "Saddi Fashions", image: "/assets/portfolio/saddifash.webp" },
+];
+
 export default function Footer() {
   const [time, setTime] = useState("");
 
@@ -130,17 +141,20 @@ export default function Footer() {
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               className="flex gap-4 w-fit"
             >
-              {[1, 2, 3, 4, 1, 2, 3, 4].map((i, idx) => (
+              {[...footerProjects, ...footerProjects].map((project, idx) => (
                 <div 
                   key={idx}
-                  className="w-56 h-32 flex-shrink-0 rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 relative"
+                  className="w-56 h-32 flex-shrink-0 rounded-2xl border border-white/5 bg-[#111] overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 relative"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="absolute bottom-4 left-4 flex flex-col gap-1.5">
-                    <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
-                      <div className="w-2/3 h-full bg-accent" />
-                    </div>
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-muted">Project 0{i}</span>
+                  <img 
+                    src={project.image} 
+                    alt={project.name}
+                    className="w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent opacity-60" />
+                  <div className="absolute bottom-3 left-4 flex flex-col gap-1">
+                    <span className="font-mono text-[8px] uppercase tracking-widest text-accent">{project.name}</span>
+                    <div className="w-8 h-[1px] bg-white/20" />
                   </div>
                 </div>
               ))}

@@ -123,7 +123,7 @@ export default function Cta() {
                         <div className="flex items-center gap-4">
                             {/* CTA Pill Button (Magnetic) */}
                             <a 
-                                href="https://wa.me/923091761099" 
+                                href="https://wa.me/923146536063" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="inline-block"
@@ -137,7 +137,7 @@ export default function Cta() {
                             
                             {/* Circular Arrow Button (Magnetic) */}
                             <a 
-                                href="https://wa.me/923091761099" 
+                                href="https://wa.me/923146536063" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="inline-block"
