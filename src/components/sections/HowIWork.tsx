@@ -1,72 +1,24 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { gsap } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ClipboardList, Layers, Code2, Rocket } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
-    {
-        title: "Planning",
-        description: "Defining project goals, wireframing, and creating a solid roadmap.",
-        icon: ClipboardList,
-        color: "#00ff87",
-        number: "01",
-        position: { top: "65%", left: "10%" },
-        activateAt: 0.0,
-    },
-    {
-        title: "Architecture",
-        description: "Defining project goals, wireframing, and creating a solid roadmap.",
-        icon: Layers,
-        color: "#60efff",
-        number: "02",
-        position: { top: "40%", left: "30%" },
-        activateAt: 0.23,
-    },
-    {
-        title: "Development",
-        description: "Bringing designs to life with clean, efficient, and modern code.",
-        icon: Code2,
-        color: "#60efff",
-        number: "03",
-        position: { top: "60%", left: "65%" },
-        activateAt: 0.67,
-    },
-    {
-        title: "Deployment",
-        description: "Launching to production with continuous monitoring and updates.",
-        icon: Rocket,
-        color: "#00ff87",
-        number: "04",
-        position: { top: "75%", left: "90%" },
-        activateAt: 0.98,
-    },
-];
-
-const svgStops = [
-    { cx: -280, cy: 610 },
-    { cx: 100, cy: 400 },
-    { cx: 800, cy: 600 },
-    { cx: 1300, cy: 750 },
-];
-
-const PATH = `M ${svgStops[0].cx},${svgStops[0].cy} C ${svgStops[0].cx + 100},${svgStops[0].cy - 100} ${svgStops[1].cx - 100},${svgStops[1].cy + 100} ${svgStops[1].cx},${svgStops[1].cy} C ${svgStops[1].cx + 150},${svgStops[1].cy - 80} ${svgStops[2].cx - 150},${svgStops[2].cy - 80} ${svgStops[2].cx},${svgStops[2].cy} C ${svgStops[2].cx + 100},${svgStops[2].cy + 50} ${svgStops[3].cx - 100},${svgStops[3].cy - 50} ${svgStops[3].cx},${svgStops[3].cy}`;
-
-function StepCard({ step, active }: { step: typeof steps[0]; active: boolean }) {
+function StepCard({ step, active, isMobile }: { step: any; active: boolean; isMobile: boolean }) {
     const Icon = step.icon;
 
     return (
         <div
             className="absolute"
             style={{
-                top: step.position.top,
-                left: step.position.left,
+                top: isMobile ? step.mobilePosition.top : step.position.top,
+                left: isMobile ? step.mobilePosition.left : step.position.left,
                 transform: "translate(-50%, -50%)",
                 zIndex: 20,
-                transition: "filter 0.6s ease",
+                transition: "all 0.6s ease",
                 filter: active ? "none" : "grayscale(1) brightness(0.3)",
             }}
         >
@@ -140,6 +92,97 @@ function StepCard({ step, active }: { step: typeof steps[0]; active: boolean }) 
 }
 
 export default function HowIWork() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    const steps = useMemo(() => [
+        {
+            title: "Planning",
+            description: "Defining project goals, wireframing, and creating a solid roadmap.",
+            icon: ClipboardList,
+            color: "#00ff87",
+            number: "01",
+            position: { top: "65%", left: "10%" },
+            mobilePosition: { top: "20%", left: "50%" },
+            activateAt: 0.0,
+            mobileActivateAt: 0.05,
+        },
+        {
+            title: "Architecture",
+            description: "Defining project goals, wireframing, and creating a solid roadmap.",
+            icon: Layers,
+            color: "#60efff",
+            number: "02",
+            position: { top: "40%", left: "30%" },
+            mobilePosition: { top: "40%", left: "50%" },
+            activateAt: 0.26,
+            mobileActivateAt: 0.30,
+        },
+        {
+            title: "Development",
+            description: "Bringing designs to life with clean, efficient, and modern code.",
+            icon: Code2,
+            color: "#60efff",
+            number: "03",
+            position: { top: "60%", left: "65%" },
+            mobilePosition: { top: "60%", left: "50%" },
+            activateAt: 0.69,
+            mobileActivateAt: 0.55,
+        },
+        {
+            title: "Deployment",
+            description: "Launching to production with continuous monitoring and updates.",
+            icon: Rocket,
+            color: "#00ff87",
+            number: "04",
+            position: { top: "75%", left: "90%" },
+            mobilePosition: { top: "80%", left: "50%" },
+            activateAt: 0.98,
+            mobileActivateAt: 0.80,
+        },
+    ], []);
+
+    const svgStops = useMemo(() => isMobile ? [
+        { cx: 250, cy: 150 },
+        { cx: 250, cy: 450 },
+        { cx: 250, cy: 750 },
+        { cx: 250, cy: 1050 },
+    ] : [
+        { cx: -280, cy: 610 },
+        { cx: 100, cy: 400 },
+        { cx: 800, cy: 600 },
+        { cx: 1300, cy: 750 },
+    ], [isMobile]);
+
+    // Geometric Circuit Path - Manhattan with 45-deg chamfers
+    const PATH = useMemo(() => {
+        if (isMobile) {
+            return `
+                M 250,100
+                L 250,225
+                L 200,275 L 200,325 L 250,375
+                L 250,525
+                L 300,575 L 300,625 L 250,675
+                L 250,825
+                L 200,875 L 200,925 L 250,975
+                L 250,1150
+            `.replace(/\s+/g, " ").trim();
+        }
+        return `
+            M -280,650 
+            L -140,650 
+            L -30,650 L 20,600 L 20,450 L 70,400 L 180,400
+            L 350,400 L 400,450 L 400,550 L 450,600 L 740,600
+            L 900,600 L 950,650 L 950,700 L 1000,750 L 1300,750
+        `.replace(/\s+/g, " ").trim();
+    }, [isMobile]);
+
     const containerRef = useRef<HTMLDivElement>(null);
     const stickyRef = useRef<HTMLDivElement>(null);
     const pathRef = useRef<SVGPathElement>(null);
@@ -186,7 +229,7 @@ export default function HowIWork() {
                     dotGlow.style.opacity = "0";
                 }
 
-                const next = steps.map((s) => p >= s.activateAt);
+                const next = steps.map((s: any) => p >= (isMobile ? s.mobileActivateAt : s.activateAt));
                 const changed = next.some((v, i) => v !== activeRef.current[i]);
                 if (changed) {
                     activeRef.current = next;
@@ -290,7 +333,7 @@ export default function HowIWork() {
                     <svg
                         className="absolute inset-0 w-full h-full pointer-events-none"
                         style={{ zIndex: 10 }}
-                        viewBox="-300 0 1600 1000"
+                        viewBox={isMobile ? "0 0 500 1200" : "-300 0 1600 1000"}
                         preserveAspectRatio="xMidYMid meet"
                     >
                         <defs>
@@ -351,7 +394,7 @@ export default function HowIWork() {
                     {/* Cards */}
                     <div className="absolute inset-0" style={{ zIndex: 20 }}>
                         {steps.map((step, i) => (
-                            <StepCard key={step.title} step={step} active={activeSteps[i]} />
+                            <StepCard key={step.title} step={step} active={activeSteps[i]} isMobile={isMobile} />
                         ))}
                     </div>
 
