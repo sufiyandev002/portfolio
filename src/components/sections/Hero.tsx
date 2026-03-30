@@ -50,7 +50,7 @@ export default function Hero() {
                     "-=0.2"
                 );
 
-            // Cinematic scroll exit
+            // Cinematic scroll exit - Targeted content scaling
             gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
@@ -59,9 +59,14 @@ export default function Hero() {
                     scrub: 1.2,
                 },
             })
-                .to(".hero-content", { y: -100, opacity: 0, ease: "none" })
-                .to(overlayRef.current, { opacity: 1, ease: "none" }, 0)
-                .to(sectionRef.current, { scale: 0.9, ease: "none" }, 0);
+                .to(".hero-content", { 
+                    y: -100, 
+                    scale: 0.9,
+                    opacity: 0, 
+                    ease: "none",
+                    force3D: true
+                })
+                .to(overlayRef.current, { opacity: 1, ease: "none" }, 0);
 
         }, sectionRef);
 
@@ -78,19 +83,6 @@ export default function Hero() {
             <div className="absolute inset-0 z-0 w-full h-full">
                 <GridFloor />
             </div>
-
-            {/* Mouse orbs */}
-            <MouseOrbs />
-
-            {/* Scanline texture */}
-            <div
-                className="absolute inset-0 z-10 pointer-events-none"
-                style={{
-                    backgroundImage:
-                        "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px)",
-                    backgroundSize: "100% 4px",
-                }}
-            />
 
             {/* Bottom gradient fade */}
             <div
@@ -161,13 +153,14 @@ export default function Hero() {
                     className="absolute inset-0 opacity-0 pointer-events-none flex items-center justify-center"
                     style={{ zIndex: 2 }}
                 >
-                    <div className="relative w-full h-full">
+                    <div className="relative w-full h-full" style={{ willChange: "transform" }}>
                         <Image
                             src="/assets/images/sufi.webp"
                             alt="Sufiyan Mirza"
                             fill
-                            className="object-contain object-center brightness-[1.2] contrast-[1.1]"
+                            className="object-contain object-center"
                             priority
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                     </div>
                 </div>
@@ -192,35 +185,13 @@ export default function Hero() {
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
                             backgroundClip: "text",
-                            filter: "drop-shadow(0 0 50px rgba(0,255,135,0.4))"
+                            textShadow: "0 0 50px rgba(0,255,135,0.4)"
                         }}
                     >
                         MIRZA
                     </h2>
                 </div>
 
-            </div>
-
-            {/* Scroll indicator */}
-            <div
-                ref={scrollRef}
-                className="absolute opacity-0"
-                style={{
-                    bottom: "2rem",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    zIndex: 50
-                }}
-            >
-                <div className="flex flex-col items-center gap-2">
-                    <div
-                        style={{
-                            width: "1px",
-                            height: "40px",
-                            background: "linear-gradient(to bottom, #00ff87, transparent)",
-                        }}
-                    />
-                </div>
             </div>
         </section>
     );

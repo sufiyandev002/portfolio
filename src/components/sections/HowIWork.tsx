@@ -47,12 +47,12 @@ function StepCard({ step, active, isMobile }: { step: any; active: boolean; isMo
                                 <div style={{ fontSize: "14px", fontWeight: 700, color: step.color }}>
                                     {step.title}
                                 </div>
-                                <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.12em", fontFamily: "monospace" }}>
+                                <div style={{ fontSize: "10px", color: "rgba(255, 255, 255, 1)", letterSpacing: "0.12em", fontFamily: "monospace" }}>
                                     PHASE {step.number}
                                 </div>
                             </div>
                         </div>
-                        <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", lineHeight: 1.6, margin: 0 }}>
+                        <p style={{ fontSize: "12px", color: "rgba(255, 255, 255, 1)", lineHeight: 1.6, margin: 0 }}>
                             {step.description}
                         </p>
                     </div>
@@ -290,11 +290,11 @@ export default function HowIWork() {
                     bottom: -4px;
                     transform: translateX(-50%);
                     opacity: 0;
-                    font-size: 10px;
+                    font-size: 12px;
                     font-weight: 600;
-                    letter-spacing: 0.1em;
+                    letter-spacing: 0.2em;
                     white-space: nowrap;
-                    font-family: monospace;
+                    // font-family: monospace;
                     transition: bottom 0.3s ease, opacity 0.3s ease;
                     pointer-events: none;
                 }
@@ -323,7 +323,7 @@ export default function HowIWork() {
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
                         <span
                             className="font-display font-black text-white uppercase tracking-tighter leading-none"
-                            style={{ fontSize: "clamp(5rem, 18vw, 16rem)", opacity: 0.1 }}
+                            style={{ fontSize: "clamp(5rem, 18vw, 16rem)", opacity: 0.3 }}
                         >
                             WORKFLOW
                         </span>

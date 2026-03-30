@@ -69,14 +69,11 @@ extend({ GridMaterial });
 
 declare module "@react-three/fiber" {
     interface ThreeElements {
-        gridMaterial: {
+        gridMaterial: Partial<THREE.ShaderMaterial> & {
             uTime?: number;
             uColor1?: THREE.Color;
             uColor2?: THREE.Color;
             uFog?: THREE.Color;
-            transparent?: boolean;
-            side?: THREE.Side;
-            depthWrite?: boolean;
         };
     }
 }
@@ -115,7 +112,12 @@ export default function GridFloor() {
     return (
         <Canvas
             camera={{ position: [0, 2, 5], fov: 60 }}
-            gl={{ antialias: true, alpha: true }}
+            gl={{ 
+                antialias: true, 
+                alpha: true,
+                powerPreference: "high-performance"
+            }}
+            dpr={[1, 1.5]}
             style={{
                 position: "absolute",
                 top: 0,

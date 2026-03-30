@@ -77,7 +77,7 @@ export default function Cta() {
         <section
             ref={sectionRef}
             id="cta"
-            className="bg-[#080808] w-full min-h-screen flex items-center py-20 border-t border-white/[0.02] overflow-hidden"
+            className="bg-[#080808] w-full min-h-screen flex items-center border-t border-white/[0.02] overflow-hidden"
         >
             <div className="max-w-[1800px] w-full mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between min-h-[70vh]">
                 

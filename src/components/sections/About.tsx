@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LazySpline from "@/components/LazySpline";
@@ -36,8 +36,10 @@ const timelineItems = [
 
 function GlassCard({ icon, text }: { icon: React.ElementType; text: string }) {
     const cardRef = useRef<HTMLDivElement>(null);
+    const [isHovered, setIsHovered] = useState(false);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        setIsHovered(true);
         const card = cardRef.current;
         if (!card) return;
         const rect = card.getBoundingClientRect();
@@ -61,6 +63,7 @@ function GlassCard({ icon, text }: { icon: React.ElementType; text: string }) {
     };
 
     const handleMouseLeave = () => {
+        setIsHovered(false);
         const card = cardRef.current;
         if (!card) return;
         gsap.to(card, {
@@ -80,15 +83,15 @@ function GlassCard({ icon, text }: { icon: React.ElementType; text: string }) {
     return (
         <div
             ref={cardRef}
-            className="relative flex items-center gap-4 p-5 rounded-2xl cursor-default"
+            className="relative flex items-center gap-4 p-5 rounded-2xl cursor-default transition-all duration-300"
             style={{
-                background: "rgba(255,255,255,0.04)",
+                background: isHovered ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(255,255,255,0.1)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
+                backdropFilter: isHovered ? "blur(20px)" : "blur(8px)",
+                WebkitBackdropFilter: isHovered ? "blur(20px)" : "blur(8px)",
                 boxShadow: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)",
                 transformStyle: "preserve-3d",
-                willChange: "transform",
+                willChange: "transform, backdrop-filter",
             }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
@@ -260,12 +263,26 @@ export default function About() {
                             rotateX: 0,
                             duration: 0.85,
                             ease: "power3.out",
+                            force3D: true,
                             scrollTrigger: {
                                 trigger: item,
                                 start: "top 85%",
                             },
                         }
                     );
+                });
+
+                // Spline visibility manager
+                ScrollTrigger.create({
+                    trigger: splineContainerRef.current,
+                    start: "top bottom",
+                    end: "bottom top",
+                    onToggle: (self) => {
+                        if (splineContainerRef.current) {
+                            splineContainerRef.current.style.visibility = self.isActive ? "visible" : "hidden";
+                            splineContainerRef.current.style.pointerEvents = self.isActive ? "auto" : "none";
+                        }
+                    },
                 });
             }
         }, sectionRef);
