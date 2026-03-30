@@ -148,6 +148,9 @@ export default function Skills() {
 
             {/* Dark gradient fade at bottom to blend into Services section seamlessly */}
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080808] to-transparent z-20 pointer-events-none" />
+
+            {/* Shield to hide Spline branding - matching background color */}
+            <div className="absolute bottom-0 right-0 w-[180px] h-[60px] bg-[#080808] z-30 pointer-events-none" />
         </section>
     );
 }
