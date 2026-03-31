@@ -34,7 +34,7 @@ const timelineItems = [
     { icon: GraduationCap, text: "Bachelors in Computer Science with Silver Medal - SILVER MEDALIST." },
 ];
 
-function GlassCard({ icon, text }: { icon: React.ElementType; text: string }) {
+function GlassCard({ icon, text }: { icon: any; text: string }) {
     const cardRef = useRef<HTMLDivElement>(null);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -116,7 +116,7 @@ function GlassCard({ icon, text }: { icon: React.ElementType; text: string }) {
                     boxShadow: "0 0 20px rgba(0,255,135,0.1)",
                 }}
             >
-                <Icon size={18} color="#00ff87" />
+                {Icon && <Icon size={18} color="#00ff87" />}
             </div>
 
             <span
@@ -335,7 +335,7 @@ export default function About() {
                     <div className="relative z-10 space-y-20 md:space-y-28">
                         {timelineItems.map((item, i) => {
                             const isEven = i % 2 === 0;
-                            const Icon = !item.isParagraph ? item.icon as React.ElementType : null;
+                            const Icon = !item.isParagraph ? (item.icon as React.ElementType<any>) : null;
 
                             return (
                                 <div

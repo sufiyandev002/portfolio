@@ -69,11 +69,12 @@ extend({ GridMaterial });
 
 declare module "@react-three/fiber" {
     interface ThreeElements {
-        gridMaterial: Partial<THREE.ShaderMaterial> & {
+        floorGridMaterial: Partial<THREE.ShaderMaterial> & {
             uTime?: number;
             uColor1?: THREE.Color;
             uColor2?: THREE.Color;
             uFog?: THREE.Color;
+            ref?: any;
         };
     }
 }
@@ -98,7 +99,7 @@ function Grid() {
             rotation={[-Math.PI / 2.2, 0, 0]}
             position={[0, -1.5, -2]}
         >
-            <gridMaterial
+            <floorGridMaterial
                 ref={matRef}
                 transparent
                 depthWrite={false}
