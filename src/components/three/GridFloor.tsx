@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useMemo } from "react";
-import type React from "react";
 import { Canvas, useFrame, extend } from "@react-three/fiber";
 import { shaderMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -38,21 +37,15 @@ const GridMaterial = shaderMaterial(
 
     void main() {
       vec2 uv = vUv;
-
       float g1 = grid(uv, 10.0);
       float g2 = grid(uv, 2.0) * 0.3;
       float g = max(g1, g2);
-
       float pulse = smoothstep(0.98, 1.0, sin(uv.x * 3.14159 + uTime * 0.5) * 0.5 + 0.5);
-
       vec3 color = mix(uColor1, uColor2, uv.x + sin(uTime * 0.3) * 0.2);
       vec3 finalColor = mix(vec3(0.0), color, g * 0.6 + pulse * 0.4);
-
       finalColor = mix(finalColor, uFog, vFog);
-
       float edge = smoothstep(0.0, 0.3, uv.y);
       float alpha = (g * 0.7 + pulse * 0.3) * edge * (1.0 - vFog);
-
       gl_FragColor = vec4(finalColor, alpha);
     }
   `
@@ -61,14 +54,6 @@ const GridMaterial = shaderMaterial(
 type GridMaterialType = InstanceType<typeof GridMaterial>;
 
 extend({ GridMaterial });
-
-declare module "@react-three/fiber" {
-    interface ThreeElements {
-        gridMaterial: Partial<GridMaterialType> & {
-            ref?: React.Ref<GridMaterialType>;
-        };
-    }
-}
 
 function Grid() {
     const matRef = useRef<GridMaterialType>(null);
