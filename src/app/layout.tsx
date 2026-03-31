@@ -6,6 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import BottomBlur from "@/components/BottomBlur";
 import Footer from "@/components/Footer";
+import StyledComponentsRegistry from "@/lib/registry";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -36,8 +37,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Sufiyan Mirza", url: "https://sufiyanmirza.dev" }],
   creator: "Sufiyan Mirza",
 
-  // Canonical URL – update to your real Vercel domain before deployment
-  metadataBase: new URL("https://sufiyanmirza.dev"),
+  // Canonical URL
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sufiyanmirza.dev"),
   alternates: {
     canonical: "/",
   },
@@ -95,13 +96,15 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${montserrat.variable} ${montserrat.className}`}
       >
-        <SmoothScroll>
-          <CustomCursor />
-          <FloatingWhatsApp />
-          {children}
-          <Footer />
-          <BottomBlur />
-        </SmoothScroll>
+        <StyledComponentsRegistry>
+          <SmoothScroll>
+            <CustomCursor />
+            <FloatingWhatsApp />
+            {children}
+            <Footer />
+            <BottomBlur />
+          </SmoothScroll>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
