@@ -4,8 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import GlitchText from "@/components/hero/GlitchText";
-import MouseOrbs from "@/components/hero/MouseOrbs";
+
 
 const GridFloor = dynamic(
     () => import("@/components/three/GridFloor"),

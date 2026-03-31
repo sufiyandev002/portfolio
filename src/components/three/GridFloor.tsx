@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useMemo } from "react";
+import type React from "react";
 import { Canvas, useFrame, extend } from "@react-three/fiber";
 import { shaderMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -57,22 +58,20 @@ const GridMaterial = shaderMaterial(
   `
 );
 
+type GridMaterialType = InstanceType<typeof GridMaterial>;
+
 extend({ GridMaterial });
 
 declare module "@react-three/fiber" {
     interface ThreeElements {
-        gridMaterial: Partial<THREE.ShaderMaterial> & {
-            uTime?: number;
-            uColor1?: THREE.Color;
-            uColor2?: THREE.Color;
-            uFog?: THREE.Color;
-            ref?: any;
+        gridMaterial: Partial<GridMaterialType> & {
+            ref?: React.Ref<GridMaterialType>;
         };
     }
 }
 
 function Grid() {
-    const matRef = useRef<THREE.ShaderMaterial & { uTime: number }>(null);
+    const matRef = useRef<GridMaterialType>(null);
 
     const geometry = useMemo(() => {
         return new THREE.PlaneGeometry(20, 20, 1, 1);
