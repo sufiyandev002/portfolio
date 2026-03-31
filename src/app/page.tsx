@@ -17,7 +17,7 @@ export default function Home() {
       <Skills />
       <Services />
       <Portfolio />
-      <BestThing />
+      {/* <BestThing /> */}
       <HowIWork />
       <Cta />
     </main>
