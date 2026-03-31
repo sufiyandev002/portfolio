@@ -373,12 +373,12 @@ export default function About() {
                 </div>
 
                 {/* Full-width Spline with heading overlay */}
-                <div
+                {/* <div
                     ref={splineContainerRef}
                     className="relative w-full opacity-0 rounded-2xl overflow-hidden mb-32"
                     style={{ height: "100vh", border: "1px solid rgba(255,255,255,0.06)" }}
                 >
-                    {/* Top-left label */}
+                    
                     <div
                         ref={splineLabelRef}
                         className="absolute top-8 left-8 z-20 opacity-0 pointer-events-none"
@@ -401,7 +401,7 @@ export default function About() {
                         </h3>
                     </div>
 
-                    {/* Bottom-right label */}
+                    
                     <div
                         ref={splineBottomRef}
                         className="absolute bottom-12 right-8 z-20 opacity-0 pointer-events-none text-right"
@@ -433,7 +433,7 @@ export default function About() {
                     />
 
                     <LazySpline scene="https://prod.spline.design/vNIcF0wIQsRTS-V2/scene.splinecode" />
-                </div>
+                </div> */}
             </div>
         </section>
     );
