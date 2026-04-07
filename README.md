@@ -3,7 +3,8 @@
 A premium, interactive portfolio showcasing Full Stack Development and AI Engineering expertise. Built with a focus on high-end aesthetics, smooth interactions, and production-grade architecture.
 
 ## 🚀 Live Demo
-[sufiyamirza.dev](https://sufiyamirza.dev) *(If deployed)*
+Link 1 : [Cloudflare](https://sufiyan-portfolio.sufiyan-dev002.workers.dev/)   
+Link 2 : [Vercal](https://vercel.com/sufiyandev002-3188s-projects/portfolio/AsYoQbWPuNPVJUpLootAsWAqszVD)
 
 ## ✨ Key Features
 - **Dynamic 3D Interactions**: Integrated Spline models with mouse-tracking effects.
