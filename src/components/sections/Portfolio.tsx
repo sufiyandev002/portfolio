@@ -94,7 +94,7 @@ export default function Portfolio() {
             <div className="max-w-[1800px] mx-auto px-6 lg:px-16 flex flex-col h-full justify-center">
 
                 {/* Header */}
-                <div ref={headerRef} className="mb-16 md:mb-24" style={{ opacity: 0 }}>
+                <div ref={headerRef} className="pt-24 mb-16 md:pt-0 md:mb-24" style={{ opacity: 0 }}>
                     <h2
                         className="font-display font-medium text-white uppercase tracking-[-0.03em]"
                         style={{ fontSize: "clamp(4rem, 12vw, 10rem)", lineHeight: 0.9 }}

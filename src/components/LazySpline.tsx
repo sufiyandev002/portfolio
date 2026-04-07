@@ -10,8 +10,19 @@ interface LazySplineProps {
 export default function LazySpline({ scene }: LazySplineProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isIntersecting, setIsIntersecting] = useState(false);
+    const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
     useEffect(() => {
+        // Detect mobile screen size (standard tablet/mobile breakpoint)
+        const mql = window.matchMedia("(max-width: 767px)");
+        const onChange = () => setIsMobile(mql.matches);
+        
+        // Initial check
+        setIsMobile(mql.matches);
+        
+        mql.addEventListener("change", onChange);
+        
+        // Intersection observer for lazy loading on desktop
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -20,16 +31,25 @@ export default function LazySpline({ scene }: LazySplineProps) {
                     observer.disconnect(); 
                 }
             },
-            // Load the Spline model when it is 800px away from the viewport
+            // Load the Spline model when it is 800px away from the viewport (desktop only)
             { rootMargin: "800px" } 
         );
 
-        if (containerRef.current) {
+        if (containerRef.current && !mql.matches) {
             observer.observe(containerRef.current);
         }
 
-        return () => observer.disconnect();
+        return () => {
+            mql.removeEventListener("change", onChange);
+            observer.disconnect();
+        };
     }, []);
+
+    // If it's mobile or we're still determining, we don't render the Spline model.
+    // This significantly saves performance and battery on mobile devices.
+    if (isMobile === true) {
+        return null;
+    }
 
     return (
         <div ref={containerRef} className="w-full h-full relative">
