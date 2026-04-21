@@ -245,13 +245,13 @@ export default function Navbar() {
                 />
 
                 {/* Top bar inside menu with logo */}
-                <div className="flex items-center justify-between px-6 pt-8 pb-6 border-b border-white/[0.05]">
+                {/* <div className="flex items-center justify-between px-6 pt-8 pb-6 border-b border-white/[0.05]">
                     <span className="font-mono text-xs tracking-[0.3em] text-[#00ff87] uppercase">Menu</span>
                     <span className="font-mono text-xs text-gray-600">{String(links.length).padStart(2, "0")} links</span>
-                </div>
+                </div> */}
 
                 {/* Nav Links */}
-                <div className="flex flex-col px-6 pt-8">
+                <div className="flex flex-col px-6 pt-24">
                     {links.map((link, i) => (
                         <a
                             key={i}
@@ -270,7 +270,7 @@ export default function Navbar() {
                             <div className="flex items-center gap-5">
                                 <span
                                     className="font-mono text-xs"
-                                    style={{ color: "rgba(255,255,255,0.25)" }}
+                                    style={{ color: "rgba(255, 255, 255, 0.68)" }}
                                 >
                                     {String(i + 1).padStart(2, "0")}
                                 </span>
@@ -282,7 +282,7 @@ export default function Navbar() {
                                 </span>
                             </div>
                             <link.icon
-                                className="w-5 h-5 opacity-20 group-hover:opacity-100 transition-opacity duration-200"
+                                className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity duration-200"
                                 style={{ color: "#00ff87" }}
                             />
                         </a>
