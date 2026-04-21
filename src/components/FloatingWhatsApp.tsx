@@ -32,18 +32,19 @@ export default function FloatingWhatsApp() {
                     y: 0, 
                     scale: 1, 
                     duration: 1.5, 
-                    ease: "power4.out" 
+                    ease: "power4.out",
+                    onComplete: () => {
+                        // Continuous gentle floating animation
+                        gsap.to(buttonRef.current, {
+                            y: -12,
+                            duration: 2.2,
+                            repeat: -1,
+                            yoyo: true,
+                            ease: "sine.inOut",
+                        });
+                    }
                 }
             );
-
-            // Continuous gentle floating animation
-            gsap.to(buttonRef.current, {
-                y: -12,
-                duration: 2.2,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-            });
         }
     }, [isVisible]);
 

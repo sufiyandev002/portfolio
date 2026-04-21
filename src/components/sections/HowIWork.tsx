@@ -317,7 +317,7 @@ export default function HowIWork() {
             >
                 <div
                     ref={stickyRef}
-                    className="relative w-full h-screen overflow-hidden"
+                    className="relative w-full h-screen overflow-hidden sm:py-6"
                 >
                     {/* Watermark */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">

@@ -97,7 +97,7 @@ export default function Portfolio() {
                 <div ref={headerRef} className="pt-24 mb-16 md:pt-0 md:mb-24" style={{ opacity: 0 }}>
                     <h2
                         className="font-display font-medium text-white uppercase tracking-[-0.03em]"
-                        style={{ fontSize: "clamp(4rem, 12vw, 10rem)", lineHeight: 0.9 }}
+                        style={{ fontSize: "clamp(3.5rem, 10vw, 10rem)", lineHeight: 0.9 }}
                     >
                         Portfolio
                     </h2>

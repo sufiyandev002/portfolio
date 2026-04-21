@@ -302,7 +302,7 @@ export default function About() {
                 <div ref={headingRef} className="mb-16 opacity-0">
                     <h2
                         className="font-display font-medium text-center leading-none uppercase tracking-tighter"
-                        style={{ fontSize: "clamp(4.5rem, 12vw, 10rem)", color: "#ffffff" }}
+                        style={{ fontSize: "clamp(3.6rem, 10vw, 10rem)", color: "#ffffff" }}
                     >
                         About Me
                     </h2>
@@ -373,9 +373,9 @@ export default function About() {
                 </div>
 
                 {/* Full-width Spline with heading overlay */}
-                {/* <div
+                <div
                     ref={splineContainerRef}
-                    className="relative w-full opacity-0 rounded-2xl overflow-hidden mb-32"
+                    className="relative w-full opacity-0 rounded-2xl overflow-hidden mb-32 hidden md:block"
                     style={{ height: "100vh", border: "1px solid rgba(255,255,255,0.06)" }}
                 >
                     
@@ -433,7 +433,7 @@ export default function About() {
                     />
 
                     <LazySpline scene="https://prod.spline.design/vNIcF0wIQsRTS-V2/scene.splinecode" />
-                </div> */}
+                </div>
             </div>
         </section>
     );

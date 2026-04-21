@@ -135,7 +135,7 @@ export default function Hero() {
                     <h1
                         className="font-display font-black leading-none tracking-tighter w-full text-center"
                         style={{
-                            fontSize: "clamp(6rem, 22vw, 22rem)",
+                            fontSize: "clamp(5rem, 15vw, 22rem)",
                             color: "#ffffff",
                             textShadow: "0 0 40px rgba(255,255,255,0.4), 0 0 80px rgba(255,255,255,0.2)",
                             opacity: 0.9,
@@ -167,7 +167,7 @@ export default function Hero() {
                 {/* MIRZA - Foreground Layer (Uppermost) */}
                 <div
                     ref={name2Ref}
-                    className="absolute opacity-0 select-none pointer-events-none flex items-center justify-center w-full"
+                    className="absolute opacity-0 select-none pointer-events-none flex items-center justify-center w-full mb-12 sm:mb-0"
                     style={{
                         zIndex: 3,
                         bottom: "8%",
@@ -177,7 +177,7 @@ export default function Hero() {
                     <h2
                         className="font-display font-black leading-none tracking-tighter w-full text-center"
                         style={{
-                            fontSize: "clamp(5rem, 16vw, 16rem)",
+                            fontSize: "clamp(4.5rem, 12vw, 16rem)",
                             color: "#ededed",
                             WebkitTextStroke: "1px rgba(255,255,255,0.1)",
                             background: "linear-gradient(135deg, #00ff87 30%, #60efff 100%)",

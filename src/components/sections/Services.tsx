@@ -270,7 +270,7 @@ export default function Services() {
                                             </div>
 
                                             {/* Right: Image */}
-                                            <div className="w-full lg:w-1/2 h-84 sm:h-80 lg:h-100 relative overflow-hidden shadow-2xl">
+                                            <div className="w-full lg:w-1/2 h-48 sm:h-50 sm:w-full lg:h-[400px] relative overflow-hidden shadow-2xl rounded-2xl">
                                                 <Image
                                                     src={service.image}
                                                     alt={service.title}

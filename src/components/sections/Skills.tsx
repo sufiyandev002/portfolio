@@ -102,7 +102,7 @@ export default function Skills() {
             <div className="absolute top-1 left-0 right-0 z-10 text-center mb-6 pt-6">
                 <h2
                     className="font-display font-medium text-white mb-4 uppercase tracking-tighter"
-                    style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
+                    style={{ fontSize: "clamp(2.7rem, 5vw, 4rem)" }}
                 >
                     Tech Arsenal
                 </h2>
@@ -117,7 +117,7 @@ export default function Skills() {
             </div>
 
             {/* Floating Skill Icons */}
-            <div className="absolute inset-0 z-10 pointer-events-none">
+            <div className="absolute inset-0 z-10 pointer-events-none sm:pt-6">
                 {skillsData.map((skill, idx) => {
                     const pos = positions[idx % positions.length];
                     const Icon = skill.icon;
