@@ -142,11 +142,12 @@ export default function Navbar() {
                                 href="/"
                                 className="block"
                             >
-                                <Image 
-                                    src="/assets/images/sm.webp" 
-                                    alt="SM Logo" 
-                                    width={140} 
+                                <Image
+                                    src="/assets/images/sm.webp"
+                                    alt="SM Logo"
+                                    width={140}
                                     height={40}
+                                    priority
                                     className="object-contain"
                                 />
                             </a>

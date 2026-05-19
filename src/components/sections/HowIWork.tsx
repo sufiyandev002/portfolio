@@ -10,12 +10,120 @@ gsap.registerPlugin(ScrollTrigger);
 function StepCard({ step, active, isMobile }: { step: any; active: boolean; isMobile: boolean }) {
     const Icon = step.icon;
 
+    if (isMobile) {
+        return (
+            <div
+                className="absolute"
+                style={{
+                    top: step.mobilePosition.top,
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 20,
+                    width: "calc(100vw - 24px)",
+                    maxWidth: "340px",
+                    transition: "filter 0.6s ease",
+                    filter: active ? "none" : "grayscale(1) brightness(0.45)",
+                }}
+            >
+                <div
+                    style={{
+                        position: "relative",
+                        background: "rgba(19, 20, 26, 0.92)",
+                        backdropFilter: "blur(6px)",
+                        WebkitBackdropFilter: "blur(6px)",
+                        border: `1px solid ${active ? step.color + "60" : "rgba(255,255,255,0.08)"}`,
+                        borderRadius: "16px",
+                        padding: "14px 14px 14px 16px",
+                        boxShadow: active
+                            ? `0 0 28px ${step.color}28, 0 6px 20px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04)`
+                            : "0 6px 20px rgba(0,0,0,0.3)",
+                        transition: "all 0.5s ease",
+                        display: "flex",
+                        gap: "12px",
+                        alignItems: "flex-start",
+                        overflow: "hidden",
+                    }}
+                >
+                    {/* accent stripe */}
+                    <span
+                        aria-hidden
+                        style={{
+                            position: "absolute",
+                            left: 0,
+                            top: 0,
+                            bottom: 0,
+                            width: "3px",
+                            background: step.color,
+                            opacity: active ? 1 : 0.35,
+                            transition: "opacity 0.5s ease",
+                        }}
+                    />
+                    <div
+                        style={{
+                            width: "44px",
+                            height: "44px",
+                            borderRadius: "12px",
+                            border: `1px solid ${step.color}60`,
+                            background: `${step.color}15`,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexShrink: 0,
+                            boxShadow: active
+                                ? `0 0 14px ${step.color}40, inset 0 0 8px ${step.color}10`
+                                : "none",
+                            transition: "all 0.5s ease",
+                        }}
+                    >
+                        <Icon size={20} color={step.color} />
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "baseline",
+                                justifyContent: "space-between",
+                                gap: "8px",
+                                marginBottom: "4px",
+                            }}
+                        >
+                            <div style={{ fontSize: "15px", fontWeight: 700, color: step.color, lineHeight: 1.2 }}>
+                                {step.title}
+                            </div>
+                            <div
+                                style={{
+                                    fontSize: "9px",
+                                    color: "rgba(255, 255, 255, 0.55)",
+                                    letterSpacing: "0.18em",
+                                    fontFamily: "monospace",
+                                    whiteSpace: "nowrap",
+                                }}
+                            >
+                                PHASE {step.number}
+                            </div>
+                        </div>
+                        <p
+                            style={{
+                                fontSize: "11.5px",
+                                color: "rgba(255, 255, 255, 0.78)",
+                                lineHeight: 1.5,
+                                margin: 0,
+                            }}
+                        >
+                            {step.description}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div
             className="absolute"
             style={{
-                top: isMobile ? step.mobilePosition.top : step.position.top,
-                left: isMobile ? step.mobilePosition.left : step.position.left,
+                top: step.position.top,
+                left: step.position.left,
                 transform: "translate(-50%, -50%)",
                 zIndex: 20,
                 transition: "all 0.6s ease",
@@ -323,7 +431,12 @@ export default function HowIWork() {
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
                         <span
                             className="font-display font-black text-white uppercase tracking-tighter leading-none"
-                            style={{ fontSize: "clamp(5rem, 18vw, 16rem)", opacity: 0.3 }}
+                            style={{
+                                fontSize: isMobile
+                                    ? "clamp(2.25rem, 13vw, 5rem)"
+                                    : "clamp(5rem, 18vw, 16rem)",
+                                opacity: 0.3,
+                            }}
                         >
                             WORKFLOW
                         </span>

@@ -18,7 +18,6 @@ export default function Hero() {
     const name1Ref = useRef<HTMLDivElement>(null);
     const name2Ref = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
-    const scrollRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -41,12 +40,6 @@ export default function Hero() {
                     { opacity: 0, x: -100, filter: "blur(10px)" },
                     { opacity: 1, x: 0, filter: "blur(0px)", duration: 1.2, ease: "power4.out" },
                     "-=1"
-                )
-                .fromTo(
-                    scrollRef.current,
-                    { opacity: 0 },
-                    { opacity: 1, duration: 1, ease: "power2.out" },
-                    "-=0.2"
                 );
 
             // Cinematic scroll exit - Targeted content scaling

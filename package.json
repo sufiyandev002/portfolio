@@ -29,6 +29,11 @@
     "tailwind-merge": "^3.5.0",
     "three": "^0.183.2"
   },
+  "overrides": {
+    "stats-gl": {
+      "three": "$three"
+    }
+  },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.18.0",
     "@tailwindcss/postcss": "^4",
